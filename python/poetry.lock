@@ -1,0 +1,17 @@
+[[package]]
+name = "enum"
+version = "0.4.7"
+description = "Robust enumerated type support in Python."
+category = "main"
+optional = false
+python-versions = "*"
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.9"
+content-hash = "23d3cec0e7f9c2b86c7c19236961ed110122043e5754bc341fbb3caaf2622930"
+
+[metadata.files]
+enum = [
+    {file = "enum-0.4.7.tar.gz", hash = "sha256:8c7cf3587eda51008bcc1eed99ea2c331ccd265c231dbaa95ec5258d3dc03100"},
+]
