@@ -2,3 +2,6 @@ python/__pycache__/
 python/test.py
 *wip*
 python/pyproject.toml
+haskell/*.hi
+haskell/*.o
+haskell/run*

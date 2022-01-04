@@ -1,8 +1,7 @@
 from timer import Timer
 
 def sum_arith_seq(b, e):
-    e -= 1
-    se = e // b
+    se = (e-1) // b
 
     return ((se * (se + 1)) >> 1) * b
 
