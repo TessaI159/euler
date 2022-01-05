@@ -1,16 +1,46 @@
 from timer import Timer
 
-def evenly_divisible(n):
-    answer = 20
-    divisor = 2
-    while(True):
-        if(answer % divisor != 0):
-            divisor = 2
-            answer += 20
-        elif(answer % divisor == 0 and divisor == n):
-            return answer
-        divisor += 1
+# I need to be able to control what number I start calculating on and which divisors I loop through
+# The number I start calculating on should also be my step
+# Start on the number output by the previous
+# Example: calc(10) == 2520
+# So on calc(11) we start with 2520, move a step of 2520, check only the divisor 11
 
 
+# In this example, if constraint is 11, step should be equal to calc(10)
+def calc(constraint, step=None):
+    if constraint == 1:
+        return 1
+    if not step:
+        step = constraint
+        div = 2
+        loop = True
+        current = step
+    else:
+        div = constraint
+        loop = False
+        current = step
+
+    if loop:
+        while True:
+            if current % div != 0:
+                div = 2
+                current += step
+            elif current % div == 0 and div == constraint:
+                return current
+            div += 1
+    else:
+        while True:
+            if current % div != 0:
+                current += step
+            else:
+                return current
+
+def outer_calc(n):
+    s = calc(1)
+    for x in range(2, n + 1):
+        s = calc(x, s)
+    return s
+            
 t = Timer()
-t.time(evenly_divisible, 20)
+t.time(outer_calc, 20)

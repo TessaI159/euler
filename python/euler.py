@@ -79,18 +79,12 @@ def is_palindrome(x):
     return x == t
 
 
-def sum_of_squares(x, y):
-    ret = 0
-    for i in range(x, y+1):
-        ret += i**2
-    return ret
+def sum_of_squares(n):
+    return (n * (n + 1) * ((2 * n) + 1)) / 6
 
 
-def square_of_sums(x, y):
-    ret = 0
-    for i in range(x, y+1):
-        ret += i
-    return (ret**2)
+def square_of_sums(n):
+    return ((n * (n + 1)) / 2) ** 2
 
 
 def remove_duplicates(list):
