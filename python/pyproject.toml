@@ -1,11 +1,12 @@
 [tool.poetry]
 name = "euler"
-version = "1.0.21"
+version = "1.0.25"
 description = "'Euler solutions in Python'"
 authors = ["Tess Garrison <tessag159@icloud.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
+requests = "^2.27.1"
 
 [tool.poetry.dev-dependencies]
 

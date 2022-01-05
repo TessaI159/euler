@@ -16,12 +16,7 @@ def read_input():
     with open(input_file_string) as input_file:
         input_data = input_file.readlines()
 
-    real_input = []
-    for x in input_data:
-        real_input.append(x.rstrip("\n"))
-
-    # return [x.rstrip('\n') for x in input_data]
-    return real_input
+    return [x.strip() for x in input_data]
 
 
 def mult(m):
@@ -36,6 +31,18 @@ def fact(n):
     for x in range(n,0,-1):
         a *= x
     return a
+
+
+def n_pandigital(n):
+    n = str(n)
+    if len(n) > 9:
+        print("Bruh.")
+        return False
+    nums = [str(x) for x in range(1, len(n) + 1)]
+    n = list(n)
+    n.sort()
+
+    return n == nums
 
 
 def proper_divisors(n):
