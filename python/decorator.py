@@ -10,9 +10,11 @@ def time_and_memory_decorator(func):
         end_time = perf_counter()
         current, peak = tracemalloc.get_traced_memory()
 
-        print(f'{answer}')
-        print(f'Peak memory use: {peak / 10**6:0.6f} MB')
-        print(f'Time to execute: {end_time - start_time:0.6f}')
+        peak = f'Peak memory use: {peak / 10**6:0.6f} MB'
+        time_to_ex = f'Time to execute: {end_time - start_time:0.6f} seconds'
+        
         tracemalloc.stop()
+        
+        return answer, peak, time_to_ex
 
     return wrapper

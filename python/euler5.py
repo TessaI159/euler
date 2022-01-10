@@ -1,13 +1,5 @@
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 
-# I need to be able to control what number I start calculating on and which divisors I loop through
-# The number I start calculating on should also be my step
-# Start on the number output by the previous
-# Example: calc(10) == 2520
-# So on calc(11) we start with 2520, move a step of 2520, check only the divisor 11
-
-
-# In this example, if constraint is 11, step should be equal to calc(10)
 def calc(constraint, step=None):
     if constraint == 1:
         return 1
@@ -35,12 +27,21 @@ def calc(constraint, step=None):
                 current += step
             else:
                 return current
+            
 
-def outer_calc(n):
+@tamd
+def find_answer():
     s = calc(1)
-    for x in range(2, n + 1):
+    for x in range(2, 21):
         s = calc(x, s)
     return s
-            
-t = Timer()
-t.time(outer_calc, 20)
+
+if __name__ == '__main__':
+    print('euler5')
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)
+
+    

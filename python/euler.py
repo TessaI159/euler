@@ -108,10 +108,13 @@ def proper_divisors(n):
 def is_prime(n):
     if n < 2:
         return False
+    
     if n == 2:
         return True
+    
     elif n % 2 == 0:
         return False
+    
     else:
         for x in range (2, int(math.sqrt(n)) + 1):
             if(n % x == 0):
@@ -151,6 +154,22 @@ def remove_duplicates(list):
         if(i not in ret):
             ret.append(i)
     return ret
+
+
+def prime_sieve(n):
+    sieve = [x for x in range(3,n,2)]
+
+    for p in sieve:
+        if is_prime(p):
+            x = p * 2
+            while x < sieve[-1]:
+                try:
+                    sieve.remove(x)
+                except ValueError as e:
+                    pass
+                x += p
+                
+    return sieve
 
 
 def prime_factors(n):

@@ -1,16 +1,13 @@
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 from euler import is_prime
 import math
 
+@tamd
+def find_answer():
+    return prime_factors(600851475143)[-1]
 
-# def find_answer(n):
-#     return prime_factors(n)[-1]
-
-
-# t = Timer()
-# t.time(find_answer, 600851475143)
-
-
+def find_answer_no_time():
+    return prime_factors(600851475143)[-1]
 
 def prime_factors(n):
     answers = []
@@ -32,6 +29,10 @@ def prime_factors(n):
     return answers
 
 
-            
-t = Timer()
-t.time(prime_factors, 427)
+if __name__ == '__main__':
+    print('euler3')
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

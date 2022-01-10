@@ -1,9 +1,15 @@
-from timer import Timer
-from euler import *
+from decorator import time_and_memory_decorator as tamd
+from euler import square_of_sums, sum_of_squares
 
-def euler_6(n):
+@tamd
+def find_answer(n=100):
     return int(square_of_sums(n) - sum_of_squares(n))
 
-t = Timer()
-t.time(euler_6, 100)
+if __name__ == '__main__':
+    print('euler6')
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)
     

@@ -1,12 +1,19 @@
-from timer import Timer
+from decorator import  time_and_memory_decorator as tamd
 
-def fibonacci_sum(max):
+@tamd
+def find_answer():
     answer, current, previous = 0, 0, 1
-    while(current < max):
+    while(current < 4000000):
         previous, current = current, current+previous
         if(current % 2 == 0):
             answer += current
     return answer
 
-t = Timer()
-t.time(fibonacci_sum, 4000000)
+
+if __name__ == '__main__':
+    print('euler2')
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)
