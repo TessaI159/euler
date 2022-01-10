@@ -1,4 +1,15 @@
-from timer import Timer
+# The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.
+
+# We shall consider fractions like, 30/50 = 3/5, to be trivial examples.
+
+# There are exactly four non-trivial examples of this type of fraction, less than one in value, and containing two digits in the numerator and denominator.
+
+# If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
+
+from decorator import time_and_memory_decorator as tamd
+import inspect
+
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def simplify_fraction(numerator, denominator):
     divided = True
@@ -40,8 +51,8 @@ def naive_simplify_fraction(numerator, denominator):
     return 0, 0
         
 
-
-def find_solution():
+@tamd
+def find_answer():
     frac = []
     naive = []
     simp = []
@@ -66,5 +77,11 @@ def find_solution():
     return simplify_fraction(a_total, b_total)[1]
                 
     
-t = Timer()
-t.time(find_solution)
+if __name__ == '__main__':
+    print(filename, ": ", end="")
+    
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

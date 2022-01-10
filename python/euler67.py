@@ -1,8 +1,12 @@
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 from euler import read_input
+import inspect
 
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+
+@tamd
 def find_answer():
-    input_data = read_input()
+    input_data = read_input(filename)
     input_data.reverse()
     input_data = [x.split(' ') for x in input_data]
 
@@ -17,5 +21,11 @@ def find_answer():
     return input_data[-1][-1]
 
 
-t = Timer()
-t.time(find_answer)
+if __name__ == '__main__':
+    print(filename, ": ", end="")
+
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

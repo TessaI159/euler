@@ -33,6 +33,8 @@ class ToolTests(unittest.TestCase):
         self.assertEqual(euler.n_pandigital('132', 3.0), True)
         self.assertEqual(euler.n_pandigital('14523'), True)
         self.assertEqual(euler.n_pandigital('14523', 6), False)
+        self.assertEqual(euler.n_pandigital('1234567890'), False)
+        self.assertEqual(euler.n_pandigital('12p345'), False)
 
 
 if __name__ == '__main__':

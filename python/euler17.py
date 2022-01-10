@@ -1,4 +1,7 @@
 from decorator import time_and_memory_decorator as tamd
+import inspect
+
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 ones_place = \
     {
@@ -59,7 +62,7 @@ teens = \
 
 
 @tamd
-def find_solution(*args, **kwargs):
+def find_answer(*args, **kwargs):
     letters = 0
     for x in range(1,1001):
         add = ''
@@ -102,4 +105,10 @@ def find_solution(*args, **kwargs):
 
 
 if __name__ == '__main__':
-    print(find_solution())
+    print(filename, ": ", end="")
+
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

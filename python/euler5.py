@@ -1,4 +1,11 @@
+# 2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.
+
+# What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
+
 from decorator import time_and_memory_decorator as tamd
+import inspect
+
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def calc(constraint, step=None):
     if constraint == 1:
@@ -37,7 +44,7 @@ def find_answer():
     return s
 
 if __name__ == '__main__':
-    print('euler5')
+    print(filename, ': ', end='')
     answer, mem, time = find_answer()
 
     print(answer)

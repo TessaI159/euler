@@ -11,10 +11,14 @@
 # d8d9d10=289 is divisible by 17
 # Find the sum of all 0 to 9 pandigital numbers with this property.
 
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 from itertools import permutations
 from euler import is_prime
+import inspect
 
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+
+@tamd
 def find_answer():
     permutions = sorted(''.join(chars) for chars in permutations('0123456789') if ''.join(chars)[0] != '0')
     primes = [x for x in range(18) if is_prime(x)]
@@ -30,5 +34,11 @@ def find_answer():
     return total
             
 
-t = Timer()
-t.time(find_answer)
+if __name__ == '__main__':
+    print(filename, ": ", end="")
+    
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

@@ -1,5 +1,8 @@
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 from enum import Enum
+import inspect
+
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 week = 7
 
@@ -32,7 +35,7 @@ class Day(Enum):
     SUNDAY = 6
 
 
-
+@tamd
 def find_answer():
     today = 365
     answer = 0
@@ -50,6 +53,11 @@ def find_answer():
             
     return answer
 
-t = Timer()
-t.time(find_answer)
+if __name__ == '__main__':
+    print(filename, ": ", end="")
     
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

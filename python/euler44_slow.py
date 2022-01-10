@@ -6,8 +6,11 @@
 
 # Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference are pentagonal and D = |Pk − Pj| is minimised; what is the value of D?
 
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 from math import sqrt
+import inspect
+
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def pent(n):
     return int((n * ((3 * n) - 1)) / 2)
@@ -18,6 +21,7 @@ def is_pent(n):
 def sum_and_diff_pent(a, b):
     return is_pent(abs(a - b)) and is_pent(a + b)
 
+@tamd
 def find_answer():
     pentagonals = [pent(n) for n in range(1,10**4)]
 
@@ -33,5 +37,11 @@ def find_answer():
     
 
 
-t = Timer()
-t.time(find_answer)
+if __name__ == '__main__':
+    print(filename, ": ", end="")
+    
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

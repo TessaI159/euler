@@ -1,5 +1,6 @@
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 from euler import is_prime, read_input
+import inspect
 
 # These are represented as 1 == on, 0 == off
 # Each number cooresponds with the following lines, in order
@@ -19,6 +20,7 @@ numbers = \
         0 : "1110111"
     }
 
+filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def string_and(string1, string2):
     """
@@ -137,10 +139,11 @@ class Clock:
             else:
                 toggles += change(n, numbers_to_display[i + 1])
         return toggles
-            
-            
-def find_solution():
-    input_data = read_input()
+
+    
+@tamd            
+def find_answer():
+    input_data = read_input(filename)
     
     inefficient_clock = Clock(False)
     efficient_clock = Clock(True)
@@ -154,5 +157,12 @@ def find_solution():
     
     
 
-t = Timer()
-t.time(find_solution)
+
+if __name__ == '__main__':
+    print(filename, ": ", end="")
+
+    answer, mem, time = find_answer()
+
+    print(answer)
+    print(mem)
+    print(time)

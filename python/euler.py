@@ -4,14 +4,13 @@ import sys
 
 def transpose(a):
     return [[row[i] for row in a] for i in range(len(a))]
-
-
-def get_input_string():
-    return "data/" + sys.argv[0].rstrip(".py") + "_input.txt"
     
 
-def read_input():
-    input_file_string = get_input_string()
+def read_input(input_file_string=None):
+    if not input_file_string:
+        return False
+    input_file_string = f'data/{input_file_string}_input.txt'
+    
     with open(input_file_string) as input_file:
         input_data = input_file.readlines()
 
@@ -46,8 +45,11 @@ def fact(n):
             n = int(n)
         except ValueError as _:
             return 0
-        
-    if n <= 0:
+
+    if n == 0:
+        return 1
+    
+    if n < 0:
         return 0
     
     a = 1
