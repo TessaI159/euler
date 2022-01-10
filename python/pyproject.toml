@@ -6,7 +6,7 @@ authors = ["Tess Garrison <tessag159@icloud.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.9"
-requests = "^2.27.1"
+pytest = "^6.2.5"
 
 [tool.poetry.dev-dependencies]
 

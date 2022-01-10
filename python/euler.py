@@ -2,7 +2,6 @@ import math
 import sys
 
 
-
 def transpose(a):
     return [[row[i] for row in a] for i in range(len(a))]
 
@@ -20,6 +19,11 @@ def read_input():
 
 
 def mult(m):
+    if True in [isinstance(m, bool), isinstance(m, dict)]:
+        return 0
+    if True in  [isinstance(m, int), isinstance(m, float)]:
+        return m
+        
     answer = 1
     for arg in m:
         answer *= int(arg)
@@ -27,22 +31,69 @@ def mult(m):
 
 
 def fact(n):
+    if True in [isinstance(n, list), isinstance(n, tuple), isinstance(n, bool), \
+                isinstance(n, set), isinstance(n, dict)]:
+        return 0
+    
+    if isinstance(n, str) and '.' in n:
+        try:
+            n = float(n)
+        except ValueError as _:
+            return 0
+        
+    elif isinstance(n, str) and '.' not in n:
+        try:
+            n = int(n)
+        except ValueError as _:
+            return 0
+        
+    if n <= 0:
+        return 0
+    
     a = 1
-    for x in range(n,0,-1):
-        a *= x
+    while n > 0:
+        a *= n
+        n -= 1
+        
+    if isinstance(n, float):
+        a *= math.gamma(n+1)
+        
     return a
 
+def string_sort(s):
+    if not isinstance(s, str):
+        return 0
+    s = list(s)
+    s.sort()
+    s = ''.join(s)
+    return s
 
-def n_pandigital(n):
-    n = str(n)
-    if len(n) > 9:
-        print("Bruh.")
+
+def n_pandigital(n, l=None):
+    if True not in [isinstance(n, int), isinstance(n, str), \
+                    isinstance(l, int), isinstance(l, float)]:
         return False
-    nums = [str(x) for x in range(1, len(n) + 1)]
-    n = list(n)
-    n.sort()
+    
+    if True in [isinstance(n, set), isinstance(n, tuple), isinstance(n, list)]:
+        n = [str(x) for x in n]
+        n = ''.join(n)
+    
+    if isinstance(l, float):
+        l = int(l)
+        
+    n = str(n)
+    if not l:
+        l = len(n)
 
-    return n == nums
+    if len(n) != l:
+        return False
+
+    comp = ''.join([str(x) for x in range(1,l+1)])
+    n = string_sort(n)
+    comp = string_sort(comp)
+
+    return n == comp
+
 
 
 def proper_divisors(n):

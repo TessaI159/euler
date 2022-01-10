@@ -1,4 +1,5 @@
 import time
+import pyperclip as pc
 
 class TimerError(Exception):
     """A custom exception used to report errors in use of Timer class"""
@@ -32,6 +33,10 @@ class Timer:
         self.start()
         ret = function(*args)
         print(ret)
+        try:
+            pc.copy(ret)
+        except pc.PyperclipException as e:
+            print(f'Couldn\'t copy because {e}')
         self.stop()
 
     def time_multiple(self, function, times, *args):

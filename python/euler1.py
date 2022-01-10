@@ -1,13 +1,13 @@
-from timer import Timer
+from decorator import time_and_memory_decorator as tamd
 
 def sum_arith_seq(b, e):
     se = (e-1) // b
 
     return ((se * (se + 1)) >> 1) * b
 
+@tamd
 def multiples_sum(n):
     return sum_arith_seq(3,n) + sum_arith_seq(5,n) - sum_arith_seq(15,n)
 
-t = Timer()
-t.time(multiples_sum, 1000)
+multiples_sum(1000)
 
