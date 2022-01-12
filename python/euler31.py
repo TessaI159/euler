@@ -11,6 +11,7 @@ import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
+
 coins = [1, 2, 5, 10, 20, 50, 100, 200]
 target = 200
 solutions = [1] + [0] * target

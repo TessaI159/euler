@@ -97,6 +97,20 @@ def n_pandigital(n, l=None):
     return n == comp
 
 
+def to_binary(num):
+    return bin(num).replace('0b', '')
+
+
+def infinite_primes(num=1):
+    if num % 2 == 0:
+        num -= 1
+        
+    while True:
+        
+        if is_prime(num):
+            yield num
+        num += 2
+
 
 def proper_divisors(n):
     ans = [1]
@@ -159,19 +173,25 @@ def remove_duplicates(list):
 
 
 def prime_sieve(n):
-    sieve = [x for x in range(3,n,2)]
+    sieve = [True for x in range(n)]
 
-    for p in sieve:
-        if is_prime(p):
-            x = p * 2
-            while x < sieve[-1]:
-                try:
-                    sieve.remove(x)
-                except ValueError as e:
-                    pass
-                x += p
-                
-    return sieve
+    sieve[0] = False
+    sieve[1] = False
+    sieve[2] = True
+
+
+    for i in range(4,n,2):
+        sieve[i] = False
+    for i in range(3,n,2):
+        if is_prime(i):
+            x = i * 2
+            while x < n:
+                sieve[x] = False
+                x += i
+
+    real_sieve = (i for i in range(len(sieve)) if sieve[i])
+    return real_sieve
+        
 
 
 def prime_factors(n):
