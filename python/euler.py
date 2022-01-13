@@ -1,12 +1,64 @@
 import math
 import sys
 
+class CustomError(Exception):
+    pass
+
+def triangular(n):
+    """Returns True is n is a triangular number, False otherwise"""
+    return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
+
+
+def pentagonal(n):
+    """Returns True is n is a pentagonal number, False otherwise"""
+    return ((1 + math.sqrt(1 + (24 * n))) / 6) % 1 == 0
+
+
+def hexagonal(n):
+    """Returns True is n is a hexagonal number, False otherwise"""
+    return ((1 + math.sqrt(1 + (8 * n))) / 4) % 1 == 0
+
+
+def triangle_number(n):
+    """Returns the nth triangle number"""
+    return (n**2 + n) // 2
+
+
+def pentagon_number(n):
+    """Returns the nth pentagon number"""
+    return ((3 * n**2) - n) // 2
+
+
+def hexagon_number(n):
+    """Returns the nth hexagon number"""
+    return (2 * n**2) - n
+
 
 def transpose(a):
+    """Transposes a 2 dimensional array
+    
+    each sub-array must be the same length as the outer array
+    i.e. the array must be square
+    [[1,2,3], [4,5,6], [7,8,9]] returns [[1,4,7], [2,5,8], [3,6,9]]
+
+    If there are more columns than rows, it drops the additional columns
+    [[1,2,3], [4,5,6]] returns [[1,4], [2,5]]
+
+    If there are more rows than columns, returns an IndexError
+    [[1,2], [3,4], [5,6]] returns IndexError
+    """
     return [[row[i] for row in a] for i in range(len(a))]
     
 
 def read_input(input_file_string=None):
+    """Really only useful for euler problems. 
+    
+    Reads the cooresponding input file for the problem, if applicable.
+    Needs to be passed the name of the script without the .py extension
+    filename represents this name, and is included in each problem's script
+    even if no input is needed
+    filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+    """
     if not input_file_string:
         return False
     input_file_string = f'data/{input_file_string}_input.txt'
@@ -18,11 +70,7 @@ def read_input(input_file_string=None):
 
 
 def mult(m):
-    if True in [isinstance(m, bool), isinstance(m, dict)]:
-        return 0
-    if True in  [isinstance(m, int), isinstance(m, float)]:
-        return m
-        
+    """Like the built-in sum, but uses multiplication instead of addition"""
     answer = 1
     for arg in m:
         answer *= int(arg)
@@ -30,22 +78,7 @@ def mult(m):
 
 
 def fact(n):
-    if True in [isinstance(n, list), isinstance(n, tuple), isinstance(n, bool), \
-                isinstance(n, set), isinstance(n, dict)]:
-        return 0
-    
-    if isinstance(n, str) and '.' in n:
-        try:
-            n = float(n)
-        except ValueError as _:
-            return 0
-        
-    elif isinstance(n, str) and '.' not in n:
-        try:
-            n = int(n)
-        except ValueError as _:
-            return 0
-
+    """Returns the factorial of n. Compatible with floating point numbers"""
     if n == 0:
         return 1
     
@@ -62,9 +95,22 @@ def fact(n):
         
     return a
 
+
 def string_sort(s):
+    """Takes a string and returns a sorted string. Capital letters come before lowercase letters"""
     if not isinstance(s, str):
-        return 0
+        raise CustomError(f'{s} is not a string')
+    s = list(s)
+    s.sort()
+    s = ''.join(s)
+    return s
+
+
+def caseless_string_sort(s):
+    """Takes a string and returns a sorted string with all lowercase letters"""
+    
+    if not isinstance(s, str):
+        raise CustomError(f'{s} is not a string')
     s = list(s)
     s.sort()
     s = ''.join(s)
@@ -72,10 +118,11 @@ def string_sort(s):
 
 
 def n_pandigital(n, l=None):
-    if True not in [isinstance(n, int), isinstance(n, str), \
-                    isinstance(l, int), isinstance(l, float)]:
-        return False
+    """Returns True if pandigital, False elsewise
     
+    If l is not passed, it checks for pandigital from 1 through len(n)
+    else checks if it is pandigital from 1 through l
+    """
     if True in [isinstance(n, set), isinstance(n, tuple), isinstance(n, list)]:
         n = [str(x) for x in n]
         n = ''.join(n)
@@ -98,10 +145,22 @@ def n_pandigital(n, l=None):
 
 
 def to_binary(num):
+    """Converts a decinal integer to binary. Raises an error if passed anything other than an int, or an item that is convertable to int"""
+    try:
+        num = int(num)
+    except ValueError as e:
+        return e
+    
     return bin(num).replace('0b', '')
 
 
 def infinite_primes(num=1):
+    """Return a generator that will generate infinite primes
+
+    This is very, very slow.
+    If an even value is passed as num, it attempt to start generating
+    primes at num - 1
+    """
     if num % 2 == 0:
         num -= 1
         
@@ -113,15 +172,17 @@ def infinite_primes(num=1):
 
 
 def proper_divisors(n):
+    """Returns a set with all the proper divisors of n"""
     ans = [1]
     for x in range(2,int(math.sqrt(n) + 1)):
         if n % x == 0:
             ans.append(x)
             ans.append(int(n/x))
-    return ans
+    return set(ans)
     
 
 def is_prime(n):
+    """Returns True if prime, False elsewise"""
     if n < 2:
         return False
     
@@ -139,6 +200,7 @@ def is_prime(n):
 
 
 def factors(n):
+    """Returns an unsorted list of factors of n"""
     ans = []
     for x in range(1, int(math.sqrt(n) + 1)):
         if n % x == 0:
@@ -148,6 +210,7 @@ def factors(n):
 
 
 def is_palindrome(x):
+    """Returns True if x is a palindrome, False elsewise. No error checking, please only pass lists and strings. 'Abcba' is False because of the capital A"""
     x = str(x)
     t = list(x)
     t.reverse()
@@ -157,22 +220,62 @@ def is_palindrome(x):
 
 
 def sum_of_squares(n):
+    """Returns the sum of squares from 1 through n
+    
+    If you need the sum of squares from x through n you can use:
+    sum_of_squares(n) - sum_of_squares(x-1) where x < n
+    """
     return (n * (n + 1) * ((2 * n) + 1)) / 6
 
 
 def square_of_sums(n):
+    """Returns the square of sums from 1 through n
+    
+    If you need the square of sums from x through n you can use:
+    (sum_of_seq(n) - sum_of_seq(x-1))**2
+    """
     return ((n * (n + 1)) / 2) ** 2
 
+def sum_of_seq(n):
+    """Sum of integers from 1 througb n
 
-def remove_duplicates(list):
-    ret = []
-    for i in list:
-        if(i not in ret):
-            ret.append(i)
-    return ret
+    If you need the sum of x through n you can use:
+    sum_of_seq(x) - sum_of_seq(n-1)
+    """
+    return (n * (n + 1)) / 2
 
 
 def prime_sieve(n):
+    """Returns a list of all primes up to limit n-1"""
+    sieve = [True for x in range(n)]
+
+    sieve[0] = False
+    sieve[1] = False
+    sieve[2] = True
+
+
+    for i in range(4,n,2):
+        sieve[i] = False
+    for i in range(3,n,2):
+        if not sieve[i]:
+            continue
+        if is_prime(i):
+            x = i * 2
+            while x < n:
+                sieve[x] = False
+                x += i
+
+    sieve = [i for i,p in enumerate(sieve) if p]
+    
+    return sieve
+
+
+def prime_sieve_gen(n):
+    """Returns a generator of all primes up to limit n-1
+    
+    Works by crafting a list using the prime_sieve function and
+    converting it to a generator. Probably useless, but oh well.
+    """
     sieve = [True for x in range(n)]
 
     sieve[0] = False
@@ -194,24 +297,164 @@ def prime_sieve(n):
         
 
 
-def prime_factors(n):
-    original = n
-    answer = []
-    if is_prime(n):
-        return n
+def unique(args, length=None):
+    """Takes an arbitrary number of lists. Returns True if all items are unique, False elsewise.
+
+    Don't pass in multiple lists, pass in a list of lists. Sorry.
+    unique takes the optional length parameter. If passed, all lists must be that length to be considered True
+    Otherwise it defaults to the length of the first list in args
+    """
+    if not length:
+        length = len(args[0])
+        
+    check_list = []
+    for arg in args:
+        if len(arg) != length:
+            return False
+        for elem in arg:
+            check_list.append(elem)
     
-    for x in range(int(math.sqrt(n)), 1, -1):
-        if is_prime(x) and n % x == 0:
-            answer.append(x)
-            n /= x
-    test = 1
-    for i in answer:
-        test *= i
-    if test != original:
-        answer.append(int(original / test))
-    answer.sort()
-    if answer[0] == 1:
-        del(answer[0])
-    return answer
+    return len(check_list) == len(set(check_list))
 
 
+def unique_no_length(args):
+    """Takes an arbitrary number of lists. Returns True if all items are unique, False elsewise.
+
+    Don't pass in multiple lists, pass in a list of lists. Sorry.
+    """
+        
+    check_list = []
+    for arg in args:
+        for elem in arg:
+            check_list.append(elem)
+    
+    return len(check_list) == len(set(check_list))
+
+
+def combine(arr):
+    """Multiplies each element by itself for each time it repeats. Returns a list
+
+    For example: combine([2,2,3,3]) returns [4,9]
+    combine([3,3,3,4,4,5,5,5]) returns [27,16,125]
+    """
+    elem_dict = {}
+
+    for elem in arr:
+        try:
+            elem_dict[elem] += 1
+        except KeyError as _:
+            elem_dict[elem] = 1
+            
+    return [key**value for key, value in elem_dict.items()]
+
+
+def sum_of_fact(n):
+    """Returns the sum of the factorial of each digit in a number
+
+    145 = 1! + 4! + 5! = 145
+    """
+    sums = 0
+
+    for c in str(n):
+        sums += fact(int(c))
+
+    return sums == n
+
+
+def prime_factors(n):
+    """Returns the prime factors of a number.
+
+    One caveat to look out for is that if a square, cube, etc.
+    is part of the prime factorization it will return a list with
+    2, 3, etc. of that number. For example:
+    prime_factors(36) return [2,2,3,3] because the prime factorization
+    of 36 is [2**2, 3**2]
+    The combine function is a good way to check if two numbers have a unique prime factorization.
+    combine(prime_factors(644)) returns [4,7,23] instead of [2,2,7,23]
+    combine(prime_factors(646)) returns [2,17,19]
+    Which allows them to be considered unique when passed to unique
+    Check out euler47.py to see prime_factors, unique, and combine used together.
+    This is what they were built for.
+    """
+    answers = []
+
+    if is_prime(n):
+        return [n]
+    
+    while n % 2 == 0:
+        answers.append(2)
+        n /= 2
+        
+    for i in range(3,int(math.sqrt(n) + 1), 2):
+        while n % i == 0:
+            answers.append(i)
+            n /= i
+            
+    if n > 2:
+        answers.append(int(n))
+            
+    return answers
+
+
+
+# Start of data for euler17.py
+# ----------------------------
+
+ones_place = \
+    {
+        0 : '',
+        1 : 'one',
+        2 : 'two',
+        3 : 'three',
+        4 : 'four',
+        5 : 'five',
+        6 : 'six',
+        7 : 'seven',
+        8 : 'eight',
+        9 : 'nine'
+    }
+
+tens_place = \
+    {
+        0 : '',
+        1 : 'ten',
+        2 : 'twenty',
+        3 : 'thirty',
+        4 : 'forty',
+        5 : 'fifty',
+        6 : 'sixty',
+        7 : 'seventy',
+        8 : 'eighty',
+        9 : 'ninety'
+    }
+
+hundreds_place = \
+    {
+        0 : '',
+        1 : 'onehundred',
+        2 : 'twohundred',
+        3 : 'threehundred',
+        4 : 'fourhundred',
+        5 : 'fivehundred',
+        6 : 'sixhundred',
+        7 : 'sevenhundred',
+        8 : 'eighthundred',
+        9 : 'ninehundred'
+    }
+
+teens = \
+    {
+        0 : 'ten',
+        1 : 'eleven',
+        2 : 'twelve',
+        3 : 'thirteen',
+        4 : 'fourteen',
+        5 : 'fifteen',
+        6 : 'sixteen',
+        7 : 'seventeen',
+        8 : 'eighteen',
+        9 : 'nineteen'
+    }
+
+# End of data for euler17.py
+# ----------------------------

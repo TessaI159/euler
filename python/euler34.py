@@ -6,17 +6,9 @@
 
 from decorator import time_and_memory_decorator as tamd
 import inspect
-from euler import fact
+from euler import fact, sum_of_fact
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
-
-def sum_of_fact(n):
-    sums = 0
-
-    for c in str(n):
-        sums += fact(int(c))
-
-    return sums == n
 
 @tamd
 def find_answer():

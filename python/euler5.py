@@ -8,8 +8,10 @@ import inspect
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def calc(constraint, step=None):
+    """Calculates the smallest number divisible by all numbers from 1 to constraint"""
     if constraint == 1:
         return 1
+    
     if not step:
         step = constraint
         div = 2

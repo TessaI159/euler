@@ -10,6 +10,9 @@ filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 @tamd
 def find_answer(r=(10**6)*2):
+    with open('data/primes.txt') as f:
+        primes = f.readlines()
+    primes = [int(x.strip()) for x in primes]
     return sum([x for x in range(3,r,2) if is_prime(x)]) + 2
 
 if __name__ == '__main__':

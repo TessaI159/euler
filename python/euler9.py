@@ -12,6 +12,7 @@ import inspect
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def pythagorean_triplet(a,b,c):
+    """Returns true if a, b, and c form a Pythagorean triplet, false elsewise"""
     return a**2 + b**2 == c**2
 
 @tamd

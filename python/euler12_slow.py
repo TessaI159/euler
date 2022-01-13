@@ -15,25 +15,25 @@
 # We can see that 28 is the first triangle number to have over five divisors.
 
 # What is the value of the first triangle number to have over five hundred divisors?
+
+
 from decorator import time_and_memory_decorator as tamd
-from euler import factors
+from euler import factors, triangle_number
 import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
-def tri_number(n):
-    return int((n * (n + 1)) / 2)
 
 @tamd
 def find_answer(n=500):
     x = 1
-    length = len(factors(tri_number(x)))
+    length = len(factors(triangle_number(x)))
 
     while length < n:
         x += 1
-        length = len(factors(tri_number(x)))
+        length = len(factors(triangle_number(x)))
         
-    return tri_number(x)
+    return triangle_number(x)
         
 
 if __name__ == '__main__':
