@@ -24,13 +24,6 @@ def find_answer():
             solution = p
     return solution
             
-            
-
-            
-        
-
-    
-
         
 
 
