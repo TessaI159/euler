@@ -5,17 +5,17 @@ class CustomError(Exception):
     pass
 
 def triangular(n):
-    """Returns True is n is a triangular number, False otherwise"""
+    """Returns True if n is a triangular number, False elsewise"""
     return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
 
 
 def pentagonal(n):
-    """Returns True is n is a pentagonal number, False otherwise"""
+    """Returns True if n is a pentagonal number, False elsewise"""
     return ((1 + math.sqrt(1 + (24 * n))) / 6) % 1 == 0
 
 
 def hexagonal(n):
-    """Returns True is n is a hexagonal number, False otherwise"""
+    """Returns True if n is a hexagonal number, False elsewise"""
     return ((1 + math.sqrt(1 + (8 * n))) / 4) % 1 == 0
 
 
@@ -210,7 +210,10 @@ def factors(n):
 
 
 def is_palindrome(x):
-    """Returns True if x is a palindrome, False elsewise. No error checking, please only pass lists and strings. 'Abcba' is False because of the capital A"""
+    """Returns True if x is a palindrome, False elsewise. 
+    
+    No error checking, please only pass lists and strings. 'Abcba' is False because of the capital A
+    """
     x = str(x)
     t = list(x)
     t.reverse()
@@ -225,7 +228,7 @@ def sum_of_squares(n):
     If you need the sum of squares from x through n you can use:
     sum_of_squares(n) - sum_of_squares(x-1) where x < n
     """
-    return (n * (n + 1) * ((2 * n) + 1)) / 6
+    return (n * (n + 1) * ((2 * n) + 1)) // 6
 
 
 def square_of_sums(n):
@@ -240,9 +243,9 @@ def sum_of_seq(n):
     """Sum of integers from 1 througb n
 
     If you need the sum of x through n you can use:
-    sum_of_seq(x) - sum_of_seq(n-1)
+    sum_of_seq(n) - sum_of_seq(x-1)
     """
-    return (n * (n + 1)) / 2
+    return (n * (n + 1)) // 2
 
 
 def prime_sieve(n):
