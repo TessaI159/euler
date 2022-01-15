@@ -17,15 +17,26 @@ import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
-def collatz_length(n, memo):
-    if n in memo.keys():
-        return memo[n]
+def collatz_length(n, memo=None):
+    if memo:
+        if n in memo.keys():
+            return memo[n]
     
     l = 1
     while n != 1:
         if n in memo.keys():
             l += memo[n]
             return l
+        if n % 2 == 0:
+            n /= 2
+        else:
+            n = (3 * n) + 1
+        l += 1
+    return l
+
+def collatz_length_no_memo(n):
+    l = 1
+    while n != 1:
         if n % 2 == 0:
             n /= 2
         else:
@@ -48,6 +59,16 @@ def find_answer():
             r_ans = x
             
     return r_ans
+
+    # ans = 0
+    # real_ans = 0
+    # for x in range(1,10**6):
+    #     if (l := collatz_length_no_memo(x)):
+    #         if l > ans:
+    #             ans = l
+    #             real_ans = x
+                
+    # return real_ans
 
 if __name__ == '__main__':
     print(filename, ": ", end="")
