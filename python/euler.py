@@ -69,12 +69,33 @@ def read_input(input_file_string=None):
     return [x.strip() for x in input_data]
 
 
+def is_permutation(a, b):
+    """Returns True if a is a permutation of b, False elsewise"""
+    a = list(str(a))
+    b = list(str(b))
+
+    a.sort()
+    b.sort()
+    
+    return a == b
+
+
 def mult(m):
     """Like the built-in sum, but uses multiplication instead of addition"""
     answer = 1
     for arg in m:
         answer *= int(arg)
     return answer
+
+
+def phi(num):
+    ans = 1
+    
+    for x in range(int(math.sqrt(num))):
+        if is_prime(x) and num % x == 0:
+            ans *= (1 - 1/x)
+            
+    return int(ans*num)
 
 
 def fact(n):
@@ -158,7 +179,7 @@ def infinite_primes(num=1):
     """Return a generator that will generate infinite primes
 
     This is very, very slow.
-    If an even value is passed as num, it attempt to start generating
+    If an even value is passed as num, it attempts to start generating
     primes at num - 1
     """
     if num % 2 == 0:
