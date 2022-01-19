@@ -60,7 +60,7 @@ def read_input(input_file_string=None):
     filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
     """
     if not input_file_string:
-        return False
+        raise CustomError('No filename passed to read_input')
     input_file_string = f'data/{input_file_string}_input.txt'
     
     with open(input_file_string) as input_file:
@@ -117,6 +117,11 @@ def fact(n):
     return a
 
 
+def binom_co(n, k):
+    """Return the binomial coefficient of (n/k)"""
+    return fact(n)/(fact(k)*fact(n - k))
+
+
 def string_sort(s):
     """Takes a string and returns a sorted string. Capital letters come before lowercase letters"""
     if not isinstance(s, str):
@@ -136,6 +141,17 @@ def caseless_string_sort(s):
     s.sort()
     s = ''.join(s)
     return s
+
+
+def digital_sum(n):
+    """Returns the digital sum of n"""
+    n = str(n)
+    if len(n) == 1:
+        return int(n)
+    ans = 0
+    for c in n:
+        ans += int(c)
+    return ans
 
 
 def n_pandigital(n, l=None):

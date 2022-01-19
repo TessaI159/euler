@@ -55,7 +55,7 @@ def string_and(string1, string2):
             new_string.append('0')
     return ''.join(new_string)
     
-
+# This function is slightly modified from the one in my euler toolbox, euler.py
 def digital_sum(n):
     n = str(n)
     if len(n) == 1:
