@@ -5,3 +5,4 @@ python/pyproject.toml
 haskell/*.hi
 haskell/*.o
 haskell/run*
+*.run
