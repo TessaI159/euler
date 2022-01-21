@@ -8,23 +8,20 @@ import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
-products_of_three = []
 
-for x in range(100,1000):
-    for y in range(x + 1,1000):
-        products_of_three.append(x * y)
 
-products_of_three = [x for x in products_of_three if is_palindrome(x)]
-products_of_three = set(products_of_three)
 
 
 @tamd
 def find_answer():
-    num = 10000000
-    while True:
-        if num in products_of_three:
-            return num
-        num -= 1
+    products_of_three = []
+    for x in range(100,1000):
+        for y in range(x + 1,1000):
+            if is_palindrome(x * y):
+                products_of_three.append(x * y)
+                
+    products_of_three.sort()
+    return products_of_three[-1]
 
 
 if __name__ == '__main__':            

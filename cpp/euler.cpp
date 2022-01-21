@@ -1,6 +1,7 @@
 #include "euler.h"
 #include <vector>
 #include <cstdint>
+#include <string>
 
 
 std::vector<uint64_t> primeFactors(uint64_t n)
@@ -65,4 +66,17 @@ bool isPrime(int n)
       
 }
 
+bool isPalindrome(int n)
+{
+  auto s = std::to_string(n);
+  auto original = s;
 
+  reverse(s.begin(), s.end());
+
+  return original == s;
+}
+
+int *bubbleSort(int *arr)
+{
+  return NULL;
+}

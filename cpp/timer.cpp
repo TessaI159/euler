@@ -1,15 +1,17 @@
 #include "timer.h"
 
 #include <ctime>
+#include <chrono>
 #include <iostream>
 
 void Timer::start()
 {
-  this->startTime = clock();
+  this->startTime = std::chrono::steady_clock::now();
 }
 
 void Timer::stop()
 {
-  this->elapsedTime = (clock() - startTime);
-  std::cout << this->elapsedTime << " ms passed" << std::endl;
+  auto endTime = std::chrono::steady_clock::now();
+  auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
+  std::cout << elapsedTime.count() << " ms passed" << std::endl;
 }

@@ -7,5 +7,7 @@
 
 std::vector<uint64_t> primeFactors(uint64_t n);
 bool isPrime(int n);
+bool isPalindrome(int n);
+int *bubbleSort(int *arr);
 
 #endif
