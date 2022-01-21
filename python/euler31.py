@@ -26,7 +26,7 @@ def find_answer():
 
 
 if __name__ == '__main__':
-    print(filename)
+    print(filename, ": ", end="")
     
     answer, mem, time = find_answer()
 

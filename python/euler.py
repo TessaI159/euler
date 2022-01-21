@@ -9,6 +9,11 @@ def triangular(n):
     return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
 
 
+def square(n):
+    """Returns True if n is a square number, False elsewise"""
+    return math.sqrt(n) % 1 == 0
+
+
 def pentagonal(n):
     """Returns True if n is a pentagonal number, False elsewise"""
     return ((1 + math.sqrt(1 + (24 * n))) / 6) % 1 == 0
@@ -19,24 +24,49 @@ def hexagonal(n):
     return ((1 + math.sqrt(1 + (8 * n))) / 4) % 1 == 0
 
 
+def heptagonal(n):
+    """Returns True if n as a heptagonal number, False elsewise"""
+    return ((3 + math.sqrt(9 + (40 * n))) / 10) % 1 == 0
+
+
+def octagonal(n):
+    """Returns True if n as a octagonal number, False elsewise"""
+    return ((1 + math.sqrt(3 * n + 1)) / 3) % 1 == 0
+
+
 def triangle_number(n):
     """Returns the nth triangle number"""
-    return (n**2 + n) // 2
+    return n * (n + 1) // 2
+
+
+def square_number(n):
+    """Returns the nth square number"""
+    return n**2
 
 
 def pentagon_number(n):
     """Returns the nth pentagon number"""
-    return ((3 * n**2) - n) // 2
+    return n * (3 * n - 1) // 2
 
 
 def hexagon_number(n):
     """Returns the nth hexagon number"""
-    return (2 * n**2) - n
+    return n * (2 * n - 1)
+
+
+def heptagon_number(n):
+    """Returns the nth heptagon number"""
+    return (n * (5 * n - 3)) // 2
+
+
+def octagon_number(n):
+    """Returns the nth octagon number"""
+    return n * (3 * n - 2)
 
 
 def transpose(a):
     """Transposes a 2 dimensional array
-    
+
     each sub-array must be the same length as the outer array
     i.e. the array must be square
     [[1,2,3], [4,5,6], [7,8,9]] returns [[1,4,7], [2,5,8], [3,6,9]]
@@ -48,11 +78,11 @@ def transpose(a):
     [[1,2], [3,4], [5,6]] returns IndexError
     """
     return [[row[i] for row in a] for i in range(len(a))]
-    
+
 
 def read_input(input_file_string=None):
-    """Really only useful for euler problems. 
-    
+    """Really only useful for euler problems.
+
     Reads the cooresponding input file for the problem, if applicable.
     Needs to be passed the name of the script without the .py extension
     filename represents this name, and is included in each problem's script
@@ -62,7 +92,7 @@ def read_input(input_file_string=None):
     if not input_file_string:
         raise CustomError('No filename passed to read_input')
     input_file_string = f'data/{input_file_string}_input.txt'
-    
+
     with open(input_file_string) as input_file:
         input_data = input_file.readlines()
 
@@ -76,7 +106,7 @@ def is_permutation(a, b):
 
     a.sort()
     b.sort()
-    
+
     return a == b
 
 
@@ -90,11 +120,11 @@ def mult(m):
 
 def phi(num):
     ans = 1
-    
+
     for x in range(int(math.sqrt(num))):
         if is_prime(x) and num % x == 0:
             ans *= (1 - 1/x)
-            
+
     return int(ans*num)
 
 
@@ -102,24 +132,28 @@ def fact(n):
     """Returns the factorial of n. Compatible with floating point numbers"""
     if n == 0:
         return 1
-    
+
     if n < 0:
         return 0
-    
+
     a = 1
     while n > 0:
         a *= n
         n -= 1
-        
+
     if isinstance(n, float):
         a *= math.gamma(n+1)
-        
+
     return a
 
 
 def binom_co(n, k):
-    """Return the binomial coefficient of (n/k)"""
+    """Returns the binomial coefficient of (n/k)"""
     return fact(n)/(fact(k)*fact(n - k))
+
+def permutations(n, k):
+    """Returns nPk"""
+    return fact(n)/fact(n - k)
 
 
 def string_sort(s):
@@ -134,7 +168,7 @@ def string_sort(s):
 
 def caseless_string_sort(s):
     """Takes a string and returns a sorted string with all lowercase letters"""
-    
+
     if not isinstance(s, str):
         raise CustomError(f'{s} is not a string')
     s = list(s)
@@ -156,17 +190,17 @@ def digital_sum(n):
 
 def n_pandigital(n, l=None):
     """Returns True if pandigital, False elsewise
-    
+
     If l is not passed, it checks for pandigital from 1 through len(n)
     else checks if it is pandigital from 1 through l
     """
     if True in [isinstance(n, set), isinstance(n, tuple), isinstance(n, list)]:
         n = [str(x) for x in n]
         n = ''.join(n)
-    
+
     if isinstance(l, float):
         l = int(l)
-        
+
     n = str(n)
     if not l:
         l = len(n)
@@ -187,7 +221,7 @@ def to_binary(num):
         num = int(num)
     except ValueError as e:
         return e
-    
+
     return bin(num).replace('0b', '')
 
 
@@ -200,9 +234,9 @@ def infinite_primes(num=1):
     """
     if num % 2 == 0:
         num -= 1
-        
+
     while True:
-        
+
         if is_prime(num):
             yield num
         num += 2
@@ -216,22 +250,22 @@ def proper_divisors(n):
             ans.append(x)
             ans.append(int(n/x))
     return set(ans)
-    
+
 
 def is_prime(n):
     """Returns True if prime, False elsewise"""
     if n < 2:
         return False
-    
+
     if n == 2:
         return True
-    
+
     elif n % 2 == 0:
         return False
-    
+
     else:
         for x in range (2, int(math.sqrt(n)) + 1):
-            if(n % x == 0):
+            if n % x == 0:
                 return False
     return True
 
@@ -247,8 +281,8 @@ def factors(n):
 
 
 def is_palindrome(x):
-    """Returns True if x is a palindrome, False elsewise. 
-    
+    """Returns True if x is a palindrome, False elsewise.
+
     No error checking, please only pass lists and strings. 'Abcba' is False because of the capital A
     """
     x = str(x)
@@ -261,7 +295,7 @@ def is_palindrome(x):
 
 def sum_of_squares(n):
     """Returns the sum of squares from 1 through n
-    
+
     If you need the sum of squares from x through n you can use:
     sum_of_squares(n) - sum_of_squares(x-1) where x < n
     """
@@ -270,7 +304,7 @@ def sum_of_squares(n):
 
 def square_of_sums(n):
     """Returns the square of sums from 1 through n
-    
+
     If you need the square of sums from x through n you can use:
     (sum_of_seq(n) - sum_of_seq(x-1))**2
     """
@@ -306,13 +340,13 @@ def prime_sieve(n):
                 x += i
 
     sieve = [i for i,p in enumerate(sieve) if p]
-    
+
     return sieve
 
 
 def prime_sieve_gen(n):
     """Returns a generator of all primes up to limit n-1
-    
+
     Works by crafting a list using the prime_sieve function and
     converting it to a generator. Probably useless, but oh well.
     """
@@ -334,7 +368,7 @@ def prime_sieve_gen(n):
 
     real_sieve = (i for i in range(len(sieve)) if sieve[i])
     return real_sieve
-        
+
 
 
 def unique(args, length=None):
@@ -346,14 +380,14 @@ def unique(args, length=None):
     """
     if not length:
         length = len(args[0])
-        
+
     check_list = []
     for arg in args:
         if len(arg) != length:
             return False
         for elem in arg:
             check_list.append(elem)
-    
+
     return len(check_list) == len(set(check_list))
 
 
@@ -362,12 +396,12 @@ def unique_no_length(args):
 
     Don't pass in multiple lists, pass in a list of lists. Sorry.
     """
-        
+
     check_list = []
     for arg in args:
         for elem in arg:
             check_list.append(elem)
-    
+
     return len(check_list) == len(set(check_list))
 
 
@@ -384,7 +418,7 @@ def combine(arr):
             elem_dict[elem] += 1
         except KeyError as _:
             elem_dict[elem] = 1
-            
+
     return [key**value for key, value in elem_dict.items()]
 
 
@@ -420,19 +454,19 @@ def prime_factors(n):
 
     if is_prime(n):
         return [n]
-    
+
     while n % 2 == 0:
         answers.append(2)
         n /= 2
-        
+
     for i in range(3,int(math.sqrt(n) + 1), 2):
         while n % i == 0:
             answers.append(i)
             n /= i
-            
+
     if n > 2:
         answers.append(int(n))
-            
+
     return answers
 
 

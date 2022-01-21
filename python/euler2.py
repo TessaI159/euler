@@ -4,7 +4,7 @@
 
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-from decorator import  time_and_memory_decorator as tamd
+from decorator import time_and_memory_decorator as tamd
 import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'

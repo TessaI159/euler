@@ -21,6 +21,12 @@ filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 @tamd
 def find_answer():
+    """Finds the maximum path sum of the 'triangle' in data/euler18_input.txt
+    
+    This uses a dynamic programming approach by starting at the bottom, checking
+    every number against the two above it, and modifying the number by
+    adding the larger of the two numbers. 
+    """
     input_data = read_input(filename)
     input_data.reverse()
     input_data = [x.split(' ') for x in input_data]

@@ -1,9 +1,28 @@
+// If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+
+// Find the sum of all the multiples of 3 or 5 below 1000.
+
+#include "timer.h"
 #include <iostream>
+
+int naiveMethod(int n);
+int sumArithSeq(int b, int e);
+int mathMethod(int n);
+
+
+int main(int argc, char** args)
+{
+  Timer timer;
+  timer.start();
+  std::cout << mathMethod(1000) << std::endl;
+  timer.stop();
+  return 0;
+}
 
 int naiveMethod(int n)
 {
-  int total = 0;
-  for(int i = 0; i < n; ++i)
+  int total{0};
+  for(int i{0}; i < n; ++i)
     {
       if(i % 3 == 0 | i % 5 == 0)
 	total += i;
@@ -24,11 +43,4 @@ int mathMethod(int n)
   // We subtract the numbers divisible by fifteen because we add them
   // in twice. Once when we add the 3s, once when we add the 5s
   return sumArithSeq(3,n) + sumArithSeq(5,n) - sumArithSeq(15,n);
-}
-
-int main(int argc, char** args)
-{
-  std::cout << mathMethod(1000) << std::endl;
-  std::cout << naiveMethod(1000) << std::endl;
-  return 0;
 }

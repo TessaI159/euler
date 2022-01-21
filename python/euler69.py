@@ -20,9 +20,8 @@ def find_answer():
     # Multiply primes until the result of more multiplication
     # would be greater than our limit, in this case 1000000
     for prime in primes:
-        if answer * prime > 10:
+        if answer * prime > 10**6:
             break
-        print(prime)
         
         answer *= prime
 
