@@ -2,9 +2,8 @@
 
 # What is the largest prime factor of the number 600851475143 ?
 
-from decorator import time_and_memory_decorator as tamd
 from euler import is_prime, prime_factors
-import math
+from decorator import time_and_memory_decorator as tamd
 import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'

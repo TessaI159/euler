@@ -3,11 +3,9 @@
 
 #include <vector>
 #include <cmath>
+#include <cstdint>
 
-std::vector<int> primeFactors(int n);
+std::vector<uint64_t> primeFactors(uint64_t n);
 bool isPrime(int n);
-
-
-
 
 #endif
