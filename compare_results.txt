@@ -1,0 +1,35 @@
+euler1: Both programs got 233168 as an answer
+cpp took 0.000000 ms
+python took 0.009000 ms
+cpp ran too fast to compare to python
+
+euler2: Both programs got 4613732 as an answer
+cpp took 0.000000 ms
+python took 0.010000 ms
+cpp ran too fast to compare to python
+
+euler3: Both programs got 6857 as an answer
+cpp took 0.000000 ms
+python took 80.697000 ms
+cpp ran too fast to compare to python
+
+euler4: Both programs got 906609 as an answer
+cpp took 44.000000 ms
+python took 601.454000 ms
+cpp ran 13.669409 times faster than python
+
+euler5: Both programs got 232792560 as an answer
+cpp took 44.000000 ms
+python took 0.021000 ms
+cpp ran 0.000477 times faster than python
+
+euler6: Both programs got 25164150 as an answer
+cpp took 0.000000 ms
+python took 0.006000 ms
+cpp ran too fast to compare to python
+
+euler7: Both programs got 104743 as an answer
+cpp took 6.000000 ms
+python took 143.875000 ms
+cpp ran 23.979167 times faster than python
+

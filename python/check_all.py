@@ -32,7 +32,9 @@ with open('data/answers') as fptr:
 
 answers = [answer.strip() for answer in answers]
 needed_answers = []
+
 for module in modules:
+    print(module.__name__)
     needed_answers.append(int(answers[int(module.__name__[5:]) - 1]))
 
 answers = needed_answers.copy()

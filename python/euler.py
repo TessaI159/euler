@@ -308,7 +308,7 @@ def square_of_sums(n):
     If you need the square of sums from x through n you can use:
     (sum_of_seq(n) - sum_of_seq(x-1))**2
     """
-    return ((n * (n + 1)) / 2) ** 2
+    return (((n * (n + 1)) / 2) ** 2)
 
 def sum_of_seq(n):
     """Sum of integers from 1 througb n

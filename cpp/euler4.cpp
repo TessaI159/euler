@@ -8,7 +8,6 @@
 #include <ctime>
 
 
-
 int main(int argc, char** args)
 {
   Timer timer;
@@ -44,5 +43,4 @@ int main(int argc, char** args)
   
   return 0;
 }
-
 

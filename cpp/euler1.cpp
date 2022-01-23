@@ -14,7 +14,8 @@ int main(int argc, char** args)
 {
   Timer timer;
   timer.start();
-  std::cout << mathMethod(1000) << std::endl;
+  int answer = mathMethod(1000);
+  std::cout << answer << std::endl;
   timer.stop();
   return 0;
 }

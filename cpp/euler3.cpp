@@ -11,8 +11,9 @@ int main(int argc, char** args)
 {
   Timer timer;
   timer.start();
-
-  std::cout << primeFactors(600851475143).back() << std::endl;
+  int answer = primeFactors(600851475143).back();
+  std::cout << answer << std::endl;
+  
   
   timer.stop();
   return 0;

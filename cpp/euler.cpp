@@ -76,7 +76,12 @@ bool isPalindrome(int n)
   return original == s;
 }
 
-int *bubbleSort(int *arr)
+uint64_t squareOfSums(uint64_t n)
 {
-  return NULL;
+  return ((n * (n + 1)) / 2) * ((n * (n + 1)) / 2);
+}
+  
+uint64_t sumOfSquares(uint64_t n)
+{
+  return (n * (n + 1) * ((2 * n) + 1)) / 6;
 }

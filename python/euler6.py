@@ -12,8 +12,8 @@
 
 # Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.
 
-from decorator import time_and_memory_decorator as tamd
 from euler import square_of_sums, sum_of_squares
+from decorator import time_and_memory_decorator as tamd
 import inspect
 
 filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'

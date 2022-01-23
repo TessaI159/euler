@@ -6,7 +6,8 @@ int main(int argc, char** args)
 {
   Timer timer;
   timer.start();
-  int sortMe[] = {41, 15, 17, 32, 18, 28, 77, 54};
+  std::cout << squareOfSums(42) << std::endl;
+  std::cout << sumOfSquares(42) << std::endl;
   timer.stop();
   return 0;
 }
