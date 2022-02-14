@@ -1,3 +1,5 @@
+# This still needs to be edited to work for MiniScript
+
 if __name__ == '__main__':
     inputfile = open('temp_compare_results.txt', 'r')
     
@@ -21,7 +23,7 @@ if __name__ == '__main__':
 
     cpp_solutions = []
     cpp_runtimes = []
-    for index in range(num_solutions * 3, len(input_data)):
+    for index in range(num_solutions * 3, (num_solutions * 3) + (num_solutions * 2)):
         if not 'ms' in input_data[index]:
             cpp_solutions.append(int(input_data[index]))
         else:
@@ -44,5 +46,3 @@ if __name__ == '__main__':
                 outputfile.write(f'cpp ran {multiplier:.6f} times faster than python\n')
                 
             outputfile.write('\n')
-    
-            

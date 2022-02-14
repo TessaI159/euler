@@ -1,4 +1,3 @@
-
 import tracemalloc
 from time import perf_counter
 
