@@ -4,7 +4,7 @@ from parameterized import parameterized
 from importlib import import_module
 import sys
 
-time_limit = 3.0
+time_limit = 10.0
 mem_limit = 25.0
 custom = False
 
