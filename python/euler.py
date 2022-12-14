@@ -1,5 +1,4 @@
 import math
-import sys
 
 class CustomError(Exception):
     pass
@@ -150,6 +149,7 @@ def fact(n):
 def binom_co(n, k):
     """Returns the binomial coefficient of (n/k)"""
     return fact(n)/(fact(k)*fact(n - k))
+
 
 def permutations(n, k):
     """Returns nPk"""

@@ -4,11 +4,17 @@ from parameterized import parameterized
 from importlib import import_module
 import sys
 
+# Each test must run in under time_limit seconds to pass
 time_limit = 10.0
+
+# Each test must use less than mem_limit megabytes of memory to pass
 mem_limit = 25.0
+
+# Flag for whether the user only wants to run a certain subset of tests
 custom = False
 
 
+# If the user passed a list of numbers on the command line, put those numbers in a list called args
 if len(sys.argv) > 1:
     args = []
     for x in range(1, len(sys.argv)):
@@ -21,6 +27,7 @@ if not custom:
     for x in range(1,771):
         if exists(f'euler{x}.py'):
             modules.append(import_module(f'euler{x}'))
+            
 else:
     for x in args:
         if exists(f'euler{x}.py'):
@@ -34,7 +41,6 @@ answers = [answer.strip() for answer in answers]
 needed_answers = []
 
 for module in modules:
-    print(module.__name__)
     needed_answers.append(int(answers[int(module.__name__[5:]) - 1]))
 
 answers = needed_answers.copy()

@@ -11,7 +11,9 @@ filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
 
 def sum_arith_seq(b, e):
     """Returns the sum of all multiples of b below e"""
-    return ((((e-1) // b) * (((e-1) // b) + 1)) >> 1) * b
+    a = e - 1
+    n = a // b
+    return ((n * (n + 1)) >> 1) * b
 
 @tamd
 def find_answer(n=1000):
