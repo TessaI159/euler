@@ -62,6 +62,19 @@ def octagon_number(n):
     """Returns the nth octagon number"""
     return n * (3 * n - 2)
 
+            
+
+def convert_to_base(to_convert, base):
+    number_stack = []
+    
+    while to_convert > 0:
+        remainder = to_convert % base
+        number_stack.append(remainder)
+        to_convert = to_convert // base
+
+    number_stack.reverse()
+    return number_stack
+    
 
 def transpose(a):
     """Transposes a 2 dimensional array
@@ -311,7 +324,7 @@ def square_of_sums(n):
     return (((n * (n + 1)) / 2) ** 2)
 
 def sum_of_seq(n):
-    """Sum of integers from 1 througb n
+    """Sum of integers from 1 throug n
 
     If you need the sum of x through n you can use:
     sum_of_seq(n) - sum_of_seq(x-1)
