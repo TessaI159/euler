@@ -305,6 +305,12 @@ def is_palindrome(x):
 
     return x == t
 
+def reverse_num(n):
+    """Returns the reverse of an integer number"""
+    n = str(n)
+    n = n[::-1]
+    n = int(n)
+    return n
 
 def sum_of_squares(n):
     """Returns the sum of squares from 1 through n
@@ -484,7 +490,7 @@ def prime_factors(n):
 
 
 
-# Start of data for euler17.py
+ # Start of data for euler17.py
 # ----------------------------
 
 ones_place = \
