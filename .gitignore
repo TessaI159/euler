@@ -2,8 +2,7 @@ python/__pycache__/
 python/test.py
 python/venv/
 *wip*
-haskell/*.hi
-haskell/*.o
-haskell/run*
 *.run
+fortran/sandbox*
+
 

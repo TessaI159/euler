@@ -4,6 +4,8 @@
 
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
+# Answer: 4613732
+
 from decorator import time_and_memory_decorator as tamd
 import inspect
 
