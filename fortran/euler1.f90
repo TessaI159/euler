@@ -1,17 +1,7 @@
-integer function sum_arith_seq(b, e) result(r)
-  integer, intent (in) :: b, e ! input
-  
-  integer              :: a, n ! intermediary variables
-
-  a = e - 1
-  n = a / b
-
-  r = RSHIFT((n * (n + 1)), 1) * b
-end function sum_arith_seq
-
 program euler1
+  use euler
   implicit none
-  integer, external :: sum_arith_seq
+  
   integer :: total
   integer, parameter :: n = 1000
   
