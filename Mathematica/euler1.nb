@@ -1,0 +1,175 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      5862,        167]
+NotebookOptionsPosition[      4959,        143]
+NotebookOutlinePosition[      5562,        162]
+CellTagsIndexPosition[      5519,        159]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+    "Works", " ", "for", " ", "low", " ", "value", " ", "of", " ", "UPPER"}], 
+    ",", " ", 
+    RowBox[{"slow", " ", "for", " ", "values", " ", "above", " ", 
+     RowBox[{"10", "^", "7"}]}]}], "*)"}], "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"UPPER", "=", 
+     RowBox[{"10", "^", "3"}]}], ";"}], "\n", 
+   RowBox[{"Total", "@", 
+    RowBox[{"Union", "[", 
+     RowBox[{
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"UPPER", "-", "1"}], ",", "3"}], "]"}], ",", 
+      RowBox[{"Range", "[", 
+       RowBox[{"0", ",", 
+        RowBox[{"UPPER", "-", "1"}], ",", "5"}], "]"}]}], 
+     "]"}]}]}]}]], "Input",
+ CellChangeTimes->{{3.915105768157637*^9, 3.915105982468751*^9}, {
+  3.9153975052844152`*^9, 3.915397542756164*^9}, {3.915397636974764*^9, 
+  3.915397640393208*^9}, {3.9153977439257183`*^9, 3.915397808951272*^9}, {
+  3.915398067156562*^9, 3.9153980867601843`*^9}, {3.915398515239654*^9, 
+  3.915398564699917*^9}, {3.915398596947144*^9, 3.9153985990843*^9}},
+ CellLabel->
+  "In[206]:=",ExpressionUUID->"a3138a90-9b19-4cee-a731-22eb85195d40"],
+
+Cell[BoxData["233168"], "Output",
+ CellChangeTimes->{
+  3.915397648901927*^9, {3.915397740767675*^9, 3.9153977966465683`*^9}, {
+   3.9153980677086077`*^9, 3.915398087260622*^9}, {3.9153985160942574`*^9, 
+   3.915398556303254*^9}, {3.9153985868063917`*^9, 3.9153985993863783`*^9}},
+ CellLabel->
+  "Out[207]=",ExpressionUUID->"30740f25-2b01-4ebf-bda4-accbb11f556c"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", 
+   RowBox[{
+   "Works", " ", "more", " ", "or", " ", "less", " ", "instantly", " ", "for",
+     " ", "any", " ", "value", " ", "of", " ", "UPPER"}], "*)"}], 
+  "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"UPPER", "=", 
+     RowBox[{"10", "^", "35"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Floor", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"UPPER", "-", "1"}], ")"}], "/", "3"}], "]"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Floor", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"UPPER", "-", "1"}], ")"}], "/", "3"}], "]"}], "+", 
+          "1"}], ")"}]}], ")"}], "/", "2"}], "*", "3"}], " ", "+", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Floor", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"UPPER", "-", "1"}], ")"}], "/", "5"}], "]"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Floor", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"UPPER", "-", "1"}], ")"}], "/", "5"}], "]"}], "+", 
+          "1"}], ")"}]}], ")"}], "/", "2"}], "*", "5"}], " ", "-", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"Floor", "[", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"UPPER", "-", "1"}], ")"}], "/", "15"}], "]"}], " ", 
+        RowBox[{"(", 
+         RowBox[{
+          RowBox[{"Floor", "[", 
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"UPPER", "-", "1"}], ")"}], "/", "15"}], "]"}], "+", 
+          "1"}], ")"}]}], ")"}], "/", "2"}], "*", "15"}]}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.915397826008296*^9, 3.915397912396737*^9}, {
+   3.9153980079537067`*^9, 3.915398027364005*^9}, {3.9153980991435413`*^9, 
+   3.91539814228906*^9}, {3.915398190609434*^9, 3.9153983180473843`*^9}, {
+   3.915398362066567*^9, 3.9153985399984493`*^9}, 3.915398660715727*^9, {
+   3.9153987023202868`*^9, 3.9153987032745743`*^9}},
+ CellLabel->
+  "In[212]:=",ExpressionUUID->"ba0543da-8e16-471a-99fd-7deb20954dac"],
+
+Cell[BoxData[\
+"2333333333333333333333333333333333316666666666666666666666666666666668"], \
+"Output",
+ CellChangeTimes->{{3.915397864910104*^9, 3.915397915543529*^9}, 
+   3.915398027708754*^9, {3.9153981010123453`*^9, 3.9153981426275597`*^9}, {
+   3.915398207277746*^9, 3.915398255506502*^9}, 3.915398296482648*^9, 
+   3.9153984709077682`*^9, {3.9153985020575*^9, 3.915398540732847*^9}, 
+   3.915398600688738*^9, 3.915398661224491*^9, 3.9153987035654573`*^9},
+ CellLabel->
+  "Out[213]=",ExpressionUUID->"0aaf1ebb-7bf6-41f2-8db0-151e3d9305d5"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{$RootDirectory, "Users", "tessaisola", 
+   "Library", "Mobile Documents", "com~apple~CloudDocs", "NIU", "Spring24", 
+   "MATH 435", "Information"}, "MyStyleSheet.nb", CharacterEncoding -> 
+  "UTF-8"],
+ExpressionUUID->"3da8af3a-c172-4575-a4cf-8a569ffda823"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1157, 29, 93, "Input",ExpressionUUID->"a3138a90-9b19-4cee-a731-22eb85195d40"],
+Cell[1740, 53, 363, 6, 34, "Output",ExpressionUUID->"30740f25-2b01-4ebf-bda4-accbb11f556c"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2140, 64, 2258, 65, 135, "Input",ExpressionUUID->"ba0543da-8e16-471a-99fd-7deb20954dac"],
+Cell[4401, 131, 542, 9, 34, "Output",ExpressionUUID->"0aaf1ebb-7bf6-41f2-8db0-151e3d9305d5"]
+}, Open  ]]
+}
+]
+*)
+

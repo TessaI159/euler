@@ -1,0 +1,109 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3651,        101]
+NotebookOptionsPosition[      2664,         76]
+NotebookOutlinePosition[      3294,         97]
+CellTagsIndexPosition[      3251,         94]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[{
+ RowBox[{"answer", "=", "0"}], "\[IndentingNewLine]", 
+ RowBox[{"current", "=", "0"}], "\[IndentingNewLine]", 
+ RowBox[{"previous", "=", "1"}], "\[IndentingNewLine]", 
+ RowBox[{"While", "[", 
+  RowBox[{
+   RowBox[{"current", "<", 
+    RowBox[{"4", "*", 
+     RowBox[{"10", "^", "6"}]}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Block", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"t", "=", "previous"}], "}"}], ",", " ", 
+      RowBox[{
+       RowBox[{"previous", "=", "current"}], ";", " ", 
+       RowBox[{"current", "=", 
+        RowBox[{"current", "+", "t"}]}]}]}], "]"}], ";", 
+    "\[IndentingNewLine]", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"Mod", "[", 
+        RowBox[{"current", ",", "2"}], "]"}], "==", "0"}], ",", 
+      RowBox[{"answer", "+=", "current"}]}], "]"}]}]}], "\[IndentingNewLine]",
+   "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "answer", "]"}]}], "Input",
+ CellChangeTimes->{{3.9153987736199617`*^9, 3.915398872391141*^9}, {
+  3.915398902739127*^9, 3.915399128478949*^9}},
+ CellLabel->"In[18]:=",ExpressionUUID->"54f0eb21-ffd9-45f8-bdb0-9ee783380c56"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.915399028031282*^9, 3.915399054493538*^9}, {
+  3.915399115032091*^9, 3.915399129272928*^9}},
+ CellLabel->"Out[18]=",ExpressionUUID->"3c1a77b2-e847-43aa-aab9-b13fffe344ff"],
+
+Cell[BoxData["0"], "Output",
+ CellChangeTimes->{{3.915399028031282*^9, 3.915399054493538*^9}, {
+  3.915399115032091*^9, 3.9153991292740107`*^9}},
+ CellLabel->"Out[19]=",ExpressionUUID->"121fea9c-c0cd-4581-acab-809b4921b892"],
+
+Cell[BoxData["1"], "Output",
+ CellChangeTimes->{{3.915399028031282*^9, 3.915399054493538*^9}, {
+  3.915399115032091*^9, 3.915399129275053*^9}},
+ CellLabel->"Out[20]=",ExpressionUUID->"63ed87ce-cc73-474f-bd7b-b11bcf192f7e"],
+
+Cell[BoxData["4613732"], "Print",
+ CellChangeTimes->{
+  3.915399054498035*^9, {3.915399115035713*^9, 3.9153991292761173`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[18]:=",ExpressionUUID->"485abad9-9a30-4909-ae06-5e17ae1b5714"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{12, Automatic}, {Automatic, 24}},
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{
+   ParentDirectory[
+    ParentDirectory[
+     ParentDirectory[]]], "Library", "Mobile Documents", 
+   "com~apple~CloudDocs", "NIU", "Spring24", "MATH 435", "Information"}, 
+  "MyStyleSheet.nb", CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"5d58c243-5bf6-4d74-b6c5-2f7a499d6025"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 1157, 29, 198, "Input",ExpressionUUID->"54f0eb21-ffd9-45f8-bdb0-9ee783380c56"],
+Cell[1740, 53, 222, 3, 34, "Output",ExpressionUUID->"3c1a77b2-e847-43aa-aab9-b13fffe344ff"],
+Cell[1965, 58, 224, 3, 34, "Output",ExpressionUUID->"121fea9c-c0cd-4581-acab-809b4921b892"],
+Cell[2192, 63, 222, 3, 34, "Output",ExpressionUUID->"63ed87ce-cc73-474f-bd7b-b11bcf192f7e"],
+Cell[2417, 68, 231, 5, 24, "Print",ExpressionUUID->"485abad9-9a30-4909-ae06-5e17ae1b5714"]
+}, Open  ]]
+}
+]
+*)
+
