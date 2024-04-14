@@ -1,0 +1,131 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 9.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       157,          7]
+NotebookDataLength[      5904,        123]
+NotebookOptionsPosition[      3032,         89]
+NotebookOutlinePosition[      3459,        105]
+CellTagsIndexPosition[      3416,        102]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[StyleData[StyleDefinitions -> "Default.nb"],ExpressionUUID->"fc568625-f985-ca4d-9975-00b9412b724f"],
+
+Cell[StyleData["Title"],
+ Background->RGBColor[
+  0.88, 1, 0.88],ExpressionUUID->"fe71e19b-a693-c54d-8ee7-80c505f0ef45"],
+
+Cell[StyleData["Subtitle"],ExpressionUUID->"fec0f9ab-d23f-3f42-a084-3e8aae08b969"],
+
+Cell[StyleData["Subsubtitle"],ExpressionUUID->"65f21acd-8aaf-724e-8658-c50b8c916920"],
+
+Cell[StyleData["Section"],
+ Background->RGBColor[
+  1., 1., 0.85],ExpressionUUID->"7d86332d-e68c-7a4e-b191-d297f47b61c2"],
+
+Cell[StyleData["Subsection"],
+ CellDingbat->"\[FilledSquare]",
+ FontFamily->"Euclid",
+ FontSize->20,
+ FontWeight->"Bold",
+ FontSlant->"Plain",
+ FontVariations->{"StrikeThrough"->False,
+ "Underline"->False},
+ FontColor->RGBColor[
+  0., 0., 0.],ExpressionUUID->"af2338fc-eead-cc4d-9920-af3a94fa67eb"],
+
+Cell[StyleData["Subsubsection"],
+ CellDingbat->"\[FilledSmallSquare]",
+ FontFamily->"Euclid",
+ FontSize->19,
+ FontWeight->"Bold",
+ FontSlant->"Plain",
+ FontVariations->{"StrikeThrough"->False,
+ "Underline"->False},
+ FontColor->RGBColor[
+  0., 0., 0.],ExpressionUUID->"d312d4f7-0848-5a46-8d59-e4ea0780108f"],
+
+Cell[StyleData["Text"],
+ Background->RGBColor[
+  0.94, 0.91, 0.88],ExpressionUUID->"8bddae61-cd6e-2749-a009-d603548f2a8e"],
+
+Cell[StyleData["Code"],ExpressionUUID->"3096b355-e358-7445-8b6c-33b27db09ac3"],
+
+Cell[StyleData["Input"],
+ CellFrame->{{0.5, 3}, {3, 0.5}},
+ Background->RGBColor[
+  1, 0.9, 0.8],ExpressionUUID->"c4cb98fd-60b3-164a-a543-4e5b6f38b072"],
+
+Cell[StyleData["Output"],ExpressionUUID->"5cb52dff-a139-4441-bc75-260d49863e27"],
+
+Cell[StyleData["Item"],ExpressionUUID->"327f264a-6010-8f46-9c10-33bc0c6e70ce"],
+
+Cell[StyleData["ItemParagraph"],ExpressionUUID->"0bafb8e9-0cef-f042-be97-1fdb284a172d"],
+
+Cell[StyleData["Subitem"],ExpressionUUID->"15e2811d-c65f-7f44-8b72-89488c3f5388"],
+
+Cell[StyleData["SubitemParagraph"],ExpressionUUID->"ef942ec3-ea15-ec44-8fd3-3d3314e3fa62"],
+
+Cell[StyleData["ItemNumbered"],ExpressionUUID->"fea92623-22d1-7f41-9d4f-2755736af3ed"],
+
+Cell[StyleData["SubitemNumbered"],ExpressionUUID->"b07a99f9-3112-8444-982b-dc2a31f396b3"],
+
+Cell[StyleData["InlineFormula"],ExpressionUUID->"57265acd-7dc4-ef46-8f83-9f78f9612e62"],
+
+Cell[StyleData["DisplayFormula"],ExpressionUUID->"43a61d77-debe-e343-b530-e21d1d58306b"],
+
+Cell[StyleData["DisplayFormulaNumbered"],ExpressionUUID->"76d7f75b-9daa-f54b-b8e8-91d7db918385"],
+
+Cell[StyleData["Program"],ExpressionUUID->"007ba49c-2c5c-bc43-8fb4-766768d780cd"]
+},
+WindowSize->{1262.25, 765.75},
+WindowMargins->{{3, Automatic}, {Automatic, 0}},
+FrontEndVersion->"14.0 for Microsoft Windows (64-bit) (December 12, 2023)",
+StyleDefinitions->"PrivateStylesheetFormatting.nb",
+ExpressionUUID->"b8e67f62-6f88-4442-88ac-f4cbec1ab0cf"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[557, 20, 104, 0, 30, 49, 0, "StyleData", "StyleDefinitions", "",ExpressionUUID->"fc568625-f985-ca4d-9975-00b9412b724f"],
+Cell[664, 22, 120, 2, 131, 24, 0, "StyleData", "Title", "All",ExpressionUUID->"fe71e19b-a693-c54d-8ee7-80c505f0ef45"],
+Cell[787, 26, 82, 0, 71, 27, 0, "StyleData", "Subtitle", "All",ExpressionUUID->"fec0f9ab-d23f-3f42-a084-3e8aae08b969"],
+Cell[872, 28, 85, 0, 49, 30, 0, "StyleData", "Subsubtitle", "All",ExpressionUUID->"65f21acd-8aaf-724e-8658-c50b8c916920"],
+Cell[960, 30, 121, 2, 89, 26, 0, "StyleData", "Section", "All",ExpressionUUID->"7d86332d-e68c-7a4e-b191-d297f47b61c2"],
+Cell[1084, 34, 298, 9, 65, 29, 0, "StyleData", "Subsection", "All",ExpressionUUID->"af2338fc-eead-cc4d-9920-af3a94fa67eb"],
+Cell[1385, 45, 306, 9, 64, 32, 0, "StyleData", "Subsubsection", "All",ExpressionUUID->"d312d4f7-0848-5a46-8d59-e4ea0780108f"],
+Cell[1694, 56, 122, 2, 65, 23, 0, "StyleData", "Text", "All",ExpressionUUID->"8bddae61-cd6e-2749-a009-d603548f2a8e"],
+Cell[1819, 60, 78, 0, 68, 23, 0, "StyleData", "Code", "All",ExpressionUUID->"3096b355-e358-7445-8b6c-33b27db09ac3"],
+Cell[1900, 62, 152, 3, 66, 24, 0, "StyleData", "Input", "All",ExpressionUUID->"c4cb98fd-60b3-164a-a543-4e5b6f38b072"],
+Cell[2055, 67, 80, 0, 47, 25, 0, "StyleData", "Output", "All",ExpressionUUID->"5cb52dff-a139-4441-bc75-260d49863e27"],
+Cell[2138, 69, 78, 0, 44, 23, 0, "StyleData", "Item", "All",ExpressionUUID->"327f264a-6010-8f46-9c10-33bc0c6e70ce"],
+Cell[2219, 71, 87, 0, 37, 32, 0, "StyleData", "ItemParagraph", "All",ExpressionUUID->"0bafb8e9-0cef-f042-be97-1fdb284a172d"],
+Cell[2309, 73, 81, 0, 40, 26, 0, "StyleData", "Subitem", "All",ExpressionUUID->"15e2811d-c65f-7f44-8b72-89488c3f5388"],
+Cell[2393, 75, 90, 0, 37, 35, 0, "StyleData", "SubitemParagraph", "All",ExpressionUUID->"ef942ec3-ea15-ec44-8fd3-3d3314e3fa62"],
+Cell[2486, 77, 86, 0, 46, 31, 0, "StyleData", "ItemNumbered", "All",ExpressionUUID->"fea92623-22d1-7f41-9d4f-2755736af3ed"],
+Cell[2575, 79, 89, 0, 41, 34, 0, "StyleData", "SubitemNumbered", "All",ExpressionUUID->"b07a99f9-3112-8444-982b-dc2a31f396b3"],
+Cell[2667, 81, 87, 0, 40, 32, 0, "StyleData", "InlineFormula", "All",ExpressionUUID->"57265acd-7dc4-ef46-8f83-9f78f9612e62"],
+Cell[2757, 83, 88, 0, 41, 33, 0, "StyleData", "DisplayFormula", "All",ExpressionUUID->"43a61d77-debe-e343-b530-e21d1d58306b"],
+Cell[2848, 85, 96, 0, 41, 41, 0, "StyleData", "DisplayFormulaNumbered", "All",ExpressionUUID->"76d7f75b-9daa-f54b-b8e8-91d7db918385"],
+Cell[2947, 87, 81, 0, 65, 26, 0, "StyleData", "Program", "All",ExpressionUUID->"007ba49c-2c5c-bc43-8fb4-766768d780cd"]
+}
+]
+*)
+

@@ -1,0 +1,104 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 14.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3435,         96]
+NotebookOptionsPosition[      2326,         68]
+NotebookOutlinePosition[      2957,         89]
+CellTagsIndexPosition[      2914,         86]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+Let d(n) be defined as the sum of proper divisors of n (numbers less than n \
+which divide evenly into n). If d(a)=b and d(b)=a, where a<>b, then a and b \
+are an amicable pair and each of a and b are called amicable numbers.
+
+Evaluate the sum of all the amicable numbers under 10000\
+\>", "Text",
+ CellChangeTimes->{{3.919012084128624*^9, 
+  3.9190121351246147`*^9}},ExpressionUUID->"90ac3607-5fb5-4d5a-841e-\
+cf72f0e6d7f2"],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"ProperDivisorSum", "[", "n_", "]"}], ":=", 
+  RowBox[{
+   RowBox[{"DivisorSum", "[", 
+    RowBox[{"n", ",", 
+     RowBox[{"#", "&"}]}], "]"}], "-", "n"}]}]], "Input",
+ CellChangeTimes->{{3.91901198842152*^9, 3.919011988425037*^9}, {
+  3.91901203911059*^9, 3.919012053120904*^9}, {3.919012170653528*^9, 
+  3.919012219826028*^9}},
+ CellLabel->"In[56]:=",ExpressionUUID->"1982f233-a844-45fc-8f58-517e1d5b8391"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ProperDivisorSum", "[", "220", "]"}]], "Input",
+ CellChangeTimes->{{3.91901222135791*^9, 3.9190122242185698`*^9}},
+ CellLabel->"In[57]:=",ExpressionUUID->"3f0c0c85-eca3-4f57-9f09-2553f6cd0fcd"],
+
+Cell[BoxData["284"], "Output",
+ CellChangeTimes->{3.9190122246575527`*^9},
+ CellLabel->"Out[57]=",ExpressionUUID->"7f8f994a-7464-4406-b0a6-31b096d7ec7a"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ProperDivisorSum", "[", 
+  RowBox[{"ProperDivisorSum", "[", "220", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.919012229114088*^9, 3.919012244806364*^9}},
+ CellLabel->"In[59]:=",ExpressionUUID->"8b5f0a4c-7eae-4097-92d8-92d5e5922839"],
+
+Cell[BoxData["220"], "Output",
+ CellChangeTimes->{{3.919012240755615*^9, 3.919012245216071*^9}},
+ CellLabel->"Out[59]=",ExpressionUUID->"4c5d533f-8c68-4a6d-b15d-1701ccb561b1"]
+}, Open  ]]
+},
+WindowSize->{Full, Full},
+WindowMargins->{{316, Automatic}, {Automatic, 50}},
+FrontEndVersion->"14.0 for Mac OS X ARM (64-bit) (December 12, 2023)",
+StyleDefinitions->FrontEnd`FileName[{
+   ParentDirectory[
+    ParentDirectory[
+     ParentDirectory[]]], "Library", "Mobile Documents", 
+   "com~apple~CloudDocs", "NIU", "Spring24", "MATH 435", "Information"}, 
+  "MyStyleSheet.nb", CharacterEncoding -> "UTF-8"],
+ExpressionUUID->"4e7c0a36-6c5b-4cee-a16b-d6b9c49ef482"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 435, 9, 120, "Text",ExpressionUUID->"90ac3607-5fb5-4d5a-841e-cf72f0e6d7f2"],
+Cell[996, 31, 442, 10, 50, "Input",ExpressionUUID->"1982f233-a844-45fc-8f58-517e1d5b8391"],
+Cell[CellGroupData[{
+Cell[1463, 45, 217, 3, 50, "Input",ExpressionUUID->"3f0c0c85-eca3-4f57-9f09-2553f6cd0fcd"],
+Cell[1683, 50, 153, 2, 34, "Output",ExpressionUUID->"7f8f994a-7464-4406-b0a6-31b096d7ec7a"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1873, 57, 259, 4, 50, "Input",ExpressionUUID->"8b5f0a4c-7eae-4097-92d8-92d5e5922839"],
+Cell[2135, 63, 175, 2, 34, "Output",ExpressionUUID->"4c5d533f-8c68-4a6d-b15d-1701ccb561b1"]
+}, Open  ]]
+}
+]
+*)
+
