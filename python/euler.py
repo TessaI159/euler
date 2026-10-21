@@ -1,4 +1,6 @@
 import math
+import inspect
+from pathlib import Path
 
 class CustomError(Exception):
     pass
@@ -95,14 +97,20 @@ def transpose(a):
 def read_input(input_file_string=None):
     """Really only useful for euler problems.
 
-    Reads the cooresponding input file for the problem, if applicable.
-    Needs to be passed the name of the script without the .py extension
-    filename represents this name, and is included in each problem's script
-    even if no input is needed
-    filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+    Reads the corresponding input file for the problem, if applicable.
+    Automatically determines the datafile to open based on the calling .py script,
+    or accepts an explicit filename without the .py extension.
     """
     if not input_file_string:
-        raise CustomError('No filename passed to read_input')
+        for frame in inspect.stack():
+            caller = Path(frame.filename)
+            if caller.name != 'euler.py':
+                input_file_string = caller.stem
+                break
+
+    if not input_file_string:
+        raise CustomError('Could not determine calling script for read_input')
+
     input_file_string = f'data/{input_file_string}_input.txt'
 
     with open(input_file_string) as input_file:
@@ -488,7 +496,28 @@ def prime_factors(n):
 
     return answers
 
-
+def euler_totient_product(n) :
+ 
+    result = n   # Initialize result as n
+      
+  # Iterate through all prime factors of n
+    p = 2
+    while p * p<= n :
+ 
+        # Check if p is a prime factor.
+        if n % p == 0 :
+ 
+            # If yes, then update n and result
+            while n % p == 0 :
+                n = n // p
+            result = result * (1.0 - (1.0 / float(p)))
+        p = p + 1
+         
+   # If n is prime
+    if n > 1 :
+        result -= result // n
+    return int(result)
+     
 
  # Start of data for euler17.py
 # ----------------------------

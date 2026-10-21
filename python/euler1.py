@@ -5,9 +5,9 @@
 # Answer is 233168
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def sum_arith_seq(b, e):
     """Returns the sum of all multiples of b below e"""

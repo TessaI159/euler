@@ -1,6 +1,6 @@
 from decorator import time_and_memory_decorator as tamd
 from euler import is_prime, read_input
-import inspect
+from pathlib import Path
 
 # These are represented as 1 == on, 0 == off
 # Each number cooresponds with the following lines, in order
@@ -20,7 +20,7 @@ numbers = \
         0 : "1110111"
     }
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def string_and(string1, string2):
     """

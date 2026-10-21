@@ -8,9 +8,9 @@
 
 from decorator import time_and_memory_decorator as tamd
 from math import sqrt
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def pent(n):
     return int((n * ((3 * n) - 1)) / 2)

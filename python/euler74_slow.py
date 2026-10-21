@@ -1,10 +1,10 @@
 # Insert question description here
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 from euler import fact
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def digital_factorial(n):
     total = 0

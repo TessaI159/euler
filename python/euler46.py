@@ -16,9 +16,9 @@
 from math import sqrt
 from euler import prime_sieve, is_prime
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def twice_square_check(n):
     return sqrt(n / 2) % 1 == 0

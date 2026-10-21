@@ -8,9 +8,9 @@
 
 from decorator import time_and_memory_decorator as tamd
 from euler import proper_divisors
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 upper_limit = 28123
 

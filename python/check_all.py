@@ -5,10 +5,10 @@ from importlib import import_module
 import sys
 
 # Each test must run in under time_limit seconds to pass
-time_limit = 10.0
+time_limit = 1.0
 
 # Each test must use less than mem_limit megabytes of memory to pass
-mem_limit = 25.0
+mem_limit = 2.5
 
 # Flag for whether the user only wants to run a certain subset of tests
 custom = False

@@ -6,9 +6,9 @@
 
 from euler import is_prime, infinite_primes
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def trunc_left(num):
     num = str(num)[1:]

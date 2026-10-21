@@ -14,9 +14,9 @@
 # Find the value of d < 1000 for which 1/d contains the longest recurring cycle in its decimal fraction part.
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def repitition(num):
     if len(num) == 1:

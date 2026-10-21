@@ -9,10 +9,10 @@
 
 from euler import read_input
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 from itertools import permutations
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def in_order(a, b, lis):
     for i, l in enumerate(lis):

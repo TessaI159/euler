@@ -10,10 +10,10 @@
 # Find the sum of the digits in the numerator of the 100th convergent of the continued fraction e
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 from euler import digital_sum
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 # The numerator is equal to the sum of the previous two numerators
 # However, every third numerator is equal to the previous numerator times a_k + the previous numerator before that one

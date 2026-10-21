@@ -7,9 +7,9 @@
 # Find the product abc.
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def pythagorean_triplet(a,b,c):
     """Returns true if a, b, and c form a Pythagorean triplet, false elsewise"""

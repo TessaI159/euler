@@ -7,9 +7,9 @@
 
 from euler import is_prime
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 # The repeating digit must be a 0, 1, or 2
 # The digit must be repeated 3 times

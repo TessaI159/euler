@@ -3,9 +3,9 @@
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def calc(constraint, step=None):
     """Calculates the smallest number divisible by all numbers from 1 to constraint"""

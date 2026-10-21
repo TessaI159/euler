@@ -1,9 +1,16 @@
-# Insert question description here
+# It is possible to write 5 as a sum in 6 different ways
+
+# 4+1
+# 3+2
+# 3+1+1
+# 2+2+1
+# 2+1+1+1
+# 1+1+1+1+1
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 numbers = [x for x in range(1,100)]
 target = 100

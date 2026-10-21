@@ -8,10 +8,10 @@
 
 from decorator import time_and_memory_decorator as tamd
 from itertools import permutations
-import inspect
+from pathlib import Path
 import sys
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def sub_string_multiplication(perm):
     perm = ''.join(perm)

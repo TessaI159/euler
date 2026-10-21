@@ -5,10 +5,10 @@
 # Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 from euler import fact, sum_of_fact
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 @tamd
 def find_answer():

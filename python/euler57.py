@@ -2,9 +2,9 @@
 # Find it at https://projecteuler.net/problem=57
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 @tamd
 def find_answer():

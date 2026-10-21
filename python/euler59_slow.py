@@ -16,7 +16,7 @@
 from euler import read_input
 from string import ascii_lowercase
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
 
 
@@ -27,7 +27,7 @@ import inspect
 # >>> detector.detect_language_of("languages are awesome")
 
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 # Common words is a list of the 80 most common words in the English language
 with open("data/common_words.txt") as fptr:

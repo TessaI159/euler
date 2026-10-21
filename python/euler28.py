@@ -11,9 +11,9 @@
 # What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 
 from decorator import time_and_memory_decorator as tamd
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 def form_spiral(w, h):
     limit = w * h

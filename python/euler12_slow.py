@@ -19,9 +19,9 @@
 
 from decorator import time_and_memory_decorator as tamd
 from euler import factors, triangle_number
-import inspect
+from pathlib import Path
 
-filename = f'{inspect.getmodule(inspect.stack()[0][0]).__file__[36:-3]}'
+filename = Path(__file__).stem
 
 
 @tamd
