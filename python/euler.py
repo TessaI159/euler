@@ -7,32 +7,32 @@ class CustomError(Exception):
     pass
 
 
-def triangular(n):
+def is_triangular(n):
     """Returns True if n is a triangular number, False otherwise"""
     return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
 
 
-def square(n):
+def is_square(n):
     """Returns True if n is a square number, False otherwise"""
     return math.sqrt(n) % 1 == 0
 
 
-def pentagonal(n):
+def is_pentagonal(n):
     """Returns True if n is a pentagonal number, False otherwise"""
     return ((1 + math.sqrt(1 + (24 * n))) / 6) % 1 == 0
 
 
-def hexagonal(n):
+def is_hexagonal(n):
     """Returns True if n is a hexagonal number, False otherwise"""
     return ((1 + math.sqrt(1 + (8 * n))) / 4) % 1 == 0
 
 
-def heptagonal(n):
+def is_heptagonal(n):
     """Returns True if n as a heptagonal number, False otherwise"""
     return ((3 + math.sqrt(9 + (40 * n))) / 10) % 1 == 0
 
 
-def octagonal(n):
+def is_octagonal(n):
     """Returns True if n as a octagonal number, False otherwise"""
     return ((1 + math.sqrt(3 * n + 1)) / 3) % 1 == 0
 

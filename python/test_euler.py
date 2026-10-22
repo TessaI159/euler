@@ -81,6 +81,42 @@ def test_octagonal_numbers_recurrence_relation():
         assert euler.octagon_number(a) == euler.octagon_number(a - 1) + 6 * a - 5
 
 
+def test_is_triangular():
+    for _ in range(20):
+        a = randint(10, 50)
+        assert euler.is_triangular(euler.triangle_number(a)) == True
+
+
+def test_is_square():
+    for _ in range(20):
+        a = randint(10, 50)
+        assert euler.is_square(euler.square_number(a)) == True
+
+
+def test_is_pentagonal():
+    for _ in range(20):
+        a = randint(10, 50)
+        assert euler.is_pentagonal(euler.pentagon_number(a)) == True
+
+
+def test_is_hexagonal():
+    for _ in range(20):
+        a = randint(10, 50)
+        assert euler.is_hexagonal(euler.hexagon_number(a)) == True
+
+
+def test_is_heptagonal():
+    for _ in range(20):
+        a = randint(10, 50)
+        assert euler.is_heptagonal(euler.heptagon_number(a)) == True
+
+
+def test_is_octagonal():
+    for _ in range(20):
+        a = randint(10, 50)
+        assert euler.is_octagonal(euler.octagon_number(a)) == True
+
+
 def test_convert_to_base_invalid_input():
     with pytest.raises(TypeError):
         euler.convert_to_base("10", 2)
@@ -93,3 +129,4 @@ def test_convert_to_base_invalid_input():
 def test_convert_to_base():
     assert euler.convert_to_base(0, 2) == [0]
     assert euler.convert_to_base(750, 16) == [2, 14, 14]
+    assert euler.convert_to_base(-12, 2) == ["-", 1, 1, 0, 0]
