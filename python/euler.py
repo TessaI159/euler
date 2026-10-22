@@ -95,8 +95,13 @@ def convert_to_base(to_convert, base):
 
 
 def transpose(a):
-    """Transposes a 2 dimensional array"""
-    return [[row[i] for row in a] for i in range(len(a[0]))]
+    """Transposes a 2D rectangular matrix."""
+    if not a:
+        return []
+    try:
+        return [list(col) for col in zip(*a, strict=True)]
+    except ValueError:
+        raise ValueError("Matrix must be rectangular")
 
 
 def read_input(input_file_string=None):

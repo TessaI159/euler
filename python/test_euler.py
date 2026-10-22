@@ -130,3 +130,21 @@ def test_convert_to_base():
     assert euler.convert_to_base(0, 2) == [0]
     assert euler.convert_to_base(750, 16) == [2, 14, 14]
     assert euler.convert_to_base(-12, 2) == ["-", 1, 1, 0, 0]
+
+
+def test_jagged_array_transpose():
+    with pytest.raises(ValueError):
+        euler.transpose([[1, 2, 3], [1, 2]])
+    with pytest.raises(TypeError):
+        euler.transpose([1])
+    with pytest.raises(TypeError):
+        euler.transpose([[1, 2, 3], [2, 3, 4], 1])
+
+
+def test_transpose():
+    assert euler.transpose([[1, 2, 3], [4, 5, 6]]) == [[1, 4], [2, 5], [3, 6]]
+    assert euler.transpose([[[1, 2], [3, 4]], [5, 6]]) == [[[1, 2], 5], [[3, 4], 6]]
+    assert euler.transpose(euler.transpose([[[1, 2], [3, 4]], [5, 6]])) == [
+        [[1, 2], [3, 4]],
+        [5, 6],
+    ]
