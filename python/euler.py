@@ -2,8 +2,10 @@ import math
 import inspect
 from pathlib import Path
 
+
 class CustomError(Exception):
     pass
+
 
 def triangular(n):
     """Returns True if n is a triangular number, False elsewise"""
@@ -64,19 +66,17 @@ def octagon_number(n):
     """Returns the nth octagon number"""
     return n * (3 * n - 2)
 
-            
 
 def convert_to_base(to_convert, base):
     number_stack = []
-    
+
     while to_convert > 0:
-        remainder = to_convert % base
+        to_convert, remainder = divmod(to_convert, base)
         number_stack.append(remainder)
-        to_convert = to_convert // base
 
     number_stack.reverse()
     return number_stack
-    
+
 
 def transpose(a):
     """Transposes a 2 dimensional array
@@ -104,14 +104,14 @@ def read_input(input_file_string=None):
     if not input_file_string:
         for frame in inspect.stack():
             caller = Path(frame.filename)
-            if caller.name != 'euler.py':
+            if caller.name != "euler.py":
                 input_file_string = caller.stem
                 break
 
     if not input_file_string:
-        raise CustomError('Could not determine calling script for read_input')
+        raise CustomError("Could not determine calling script for read_input")
 
-    input_file_string = f'data/{input_file_string}_input.txt'
+    input_file_string = f"data/{input_file_string}_input.txt"
 
     with open(input_file_string) as input_file:
         input_data = input_file.readlines()
@@ -143,9 +143,9 @@ def phi(num):
 
     for x in range(int(math.sqrt(num))):
         if is_prime(x) and num % x == 0:
-            ans *= (1 - 1/x)
+            ans *= 1 - 1 / x
 
-    return int(ans*num)
+    return int(ans * num)
 
 
 def fact(n):
@@ -162,28 +162,28 @@ def fact(n):
         n -= 1
 
     if isinstance(n, float):
-        a *= math.gamma(n+1)
+        a *= math.gamma(n + 1)
 
     return a
 
 
 def binom_co(n, k):
     """Returns the binomial coefficient of (n/k)"""
-    return fact(n)/(fact(k)*fact(n - k))
+    return fact(n) / (fact(k) * fact(n - k))
 
 
 def permutations(n, k):
     """Returns nPk"""
-    return fact(n)/fact(n - k)
+    return fact(n) / fact(n - k)
 
 
 def string_sort(s):
     """Takes a string and returns a sorted string. Capital letters come before lowercase letters"""
     if not isinstance(s, str):
-        raise CustomError(f'{s} is not a string')
+        raise CustomError(f"{s} is not a string")
     s = list(s)
     s.sort()
-    s = ''.join(s)
+    s = "".join(s)
     return s
 
 
@@ -191,10 +191,10 @@ def caseless_string_sort(s):
     """Takes a string and returns a sorted string with all lowercase letters"""
 
     if not isinstance(s, str):
-        raise CustomError(f'{s} is not a string')
+        raise CustomError(f"{s} is not a string")
     s = list(s)
     s.sort()
-    s = ''.join(s)
+    s = "".join(s)
     return s
 
 
@@ -217,7 +217,7 @@ def n_pandigital(n, l=None):
     """
     if True in [isinstance(n, set), isinstance(n, tuple), isinstance(n, list)]:
         n = [str(x) for x in n]
-        n = ''.join(n)
+        n = "".join(n)
 
     if isinstance(l, float):
         l = int(l)
@@ -229,7 +229,7 @@ def n_pandigital(n, l=None):
     if len(n) != l:
         return False
 
-    comp = ''.join([str(x) for x in range(1,l+1)])
+    comp = "".join([str(x) for x in range(1, l + 1)])
     n = string_sort(n)
     comp = string_sort(comp)
 
@@ -243,7 +243,7 @@ def to_binary(num):
     except ValueError as e:
         return e
 
-    return bin(num).replace('0b', '')
+    return bin(num).replace("0b", "")
 
 
 def infinite_primes(num=1):
@@ -257,7 +257,6 @@ def infinite_primes(num=1):
         num -= 1
 
     while True:
-
         if is_prime(num):
             yield num
         num += 2
@@ -266,10 +265,10 @@ def infinite_primes(num=1):
 def proper_divisors(n):
     """Returns a set with all the proper divisors of n"""
     ans = [1]
-    for x in range(2,int(math.sqrt(n) + 1)):
+    for x in range(2, int(math.sqrt(n) + 1)):
         if n % x == 0:
             ans.append(x)
-            ans.append(int(n/x))
+            ans.append(int(n / x))
     return set(ans)
 
 
@@ -285,7 +284,7 @@ def is_prime(n):
         return False
 
     else:
-        for x in range (2, int(math.sqrt(n)) + 1):
+        for x in range(2, int(math.sqrt(n)) + 1):
             if n % x == 0:
                 return False
     return True
@@ -309,9 +308,10 @@ def is_palindrome(x):
     x = str(x)
     t = list(x)
     t.reverse()
-    t = ''.join(t)
+    t = "".join(t)
 
     return x == t
+
 
 def reverse_num(n):
     """Returns the reverse of an integer number"""
@@ -319,6 +319,7 @@ def reverse_num(n):
     n = n[::-1]
     n = int(n)
     return n
+
 
 def sum_of_squares(n):
     """Returns the sum of squares from 1 through n
@@ -335,7 +336,8 @@ def square_of_sums(n):
     If you need the square of sums from x through n you can use:
     (sum_of_seq(n) - sum_of_seq(x-1))**2
     """
-    return (((n * (n + 1)) / 2) ** 2)
+    return ((n * (n + 1)) / 2) ** 2
+
 
 def sum_of_seq(n):
     """Sum of integers from 1 throug n
@@ -354,10 +356,9 @@ def prime_sieve(n):
     sieve[1] = False
     sieve[2] = True
 
-
-    for i in range(4,n,2):
+    for i in range(4, n, 2):
         sieve[i] = False
-    for i in range(3,n,2):
+    for i in range(3, n, 2):
         if not sieve[i]:
             continue
         if is_prime(i):
@@ -366,7 +367,7 @@ def prime_sieve(n):
                 sieve[x] = False
                 x += i
 
-    sieve = [i for i,p in enumerate(sieve) if p]
+    sieve = [i for i, p in enumerate(sieve) if p]
 
     return sieve
 
@@ -383,10 +384,9 @@ def prime_sieve_gen(n):
     sieve[1] = False
     sieve[2] = True
 
-
-    for i in range(4,n,2):
+    for i in range(4, n, 2):
         sieve[i] = False
-    for i in range(3,n,2):
+    for i in range(3, n, 2):
         if is_prime(i):
             x = i * 2
             while x < n:
@@ -395,7 +395,6 @@ def prime_sieve_gen(n):
 
     real_sieve = (i for i in range(len(sieve)) if sieve[i])
     return real_sieve
-
 
 
 def unique(args, length=None):
@@ -486,7 +485,7 @@ def prime_factors(n):
         answers.append(2)
         n /= 2
 
-    for i in range(3,int(math.sqrt(n) + 1), 2):
+    for i in range(3, int(math.sqrt(n) + 1), 2):
         while n % i == 0:
             answers.append(i)
             n /= i
@@ -496,87 +495,82 @@ def prime_factors(n):
 
     return answers
 
-def euler_totient_product(n) :
- 
-    result = n   # Initialize result as n
-      
-  # Iterate through all prime factors of n
+
+def euler_totient_product(n):
+
+    result = n  # Initialize result as n
+
+    # Iterate through all prime factors of n
     p = 2
-    while p * p<= n :
- 
+    while p * p <= n:
         # Check if p is a prime factor.
-        if n % p == 0 :
- 
+        if n % p == 0:
             # If yes, then update n and result
-            while n % p == 0 :
+            while n % p == 0:
                 n = n // p
             result = result * (1.0 - (1.0 / float(p)))
         p = p + 1
-         
-   # If n is prime
-    if n > 1 :
+
+    # If n is prime
+    if n > 1:
         result -= result // n
     return int(result)
-     
 
- # Start of data for euler17.py
+
+# Start of data for euler17.py
 # ----------------------------
 
-ones_place = \
-    {
-        0 : '',
-        1 : 'one',
-        2 : 'two',
-        3 : 'three',
-        4 : 'four',
-        5 : 'five',
-        6 : 'six',
-        7 : 'seven',
-        8 : 'eight',
-        9 : 'nine'
-    }
+ones_place = {
+    0: "",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine",
+}
 
-tens_place = \
-    {
-        0 : '',
-        1 : 'ten',
-        2 : 'twenty',
-        3 : 'thirty',
-        4 : 'forty',
-        5 : 'fifty',
-        6 : 'sixty',
-        7 : 'seventy',
-        8 : 'eighty',
-        9 : 'ninety'
-    }
+tens_place = {
+    0: "",
+    1: "ten",
+    2: "twenty",
+    3: "thirty",
+    4: "forty",
+    5: "fifty",
+    6: "sixty",
+    7: "seventy",
+    8: "eighty",
+    9: "ninety",
+}
 
-hundreds_place = \
-    {
-        0 : '',
-        1 : 'onehundred',
-        2 : 'twohundred',
-        3 : 'threehundred',
-        4 : 'fourhundred',
-        5 : 'fivehundred',
-        6 : 'sixhundred',
-        7 : 'sevenhundred',
-        8 : 'eighthundred',
-        9 : 'ninehundred'
-    }
+hundreds_place = {
+    0: "",
+    1: "onehundred",
+    2: "twohundred",
+    3: "threehundred",
+    4: "fourhundred",
+    5: "fivehundred",
+    6: "sixhundred",
+    7: "sevenhundred",
+    8: "eighthundred",
+    9: "ninehundred",
+}
 
-teens = \
-    {
-        0 : 'ten',
-        1 : 'eleven',
-        2 : 'twelve',
-        3 : 'thirteen',
-        4 : 'fourteen',
-        5 : 'fifteen',
-        6 : 'sixteen',
-        7 : 'seventeen',
-        8 : 'eighteen',
-        9 : 'nineteen'
-    }
+teens = {
+    0: "ten",
+    1: "eleven",
+    2: "twelve",
+    3: "thirteen",
+    4: "fourteen",
+    5: "fifteen",
+    6: "sixteen",
+    7: "seventeen",
+    8: "eighteen",
+    9: "nineteen",
+}
 
 # End of data for euler17.py
 # ----------------------------

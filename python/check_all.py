@@ -24,40 +24,61 @@ if len(sys.argv) > 1:
 
 modules = []
 if not custom:
-    for x in range(1,771):
-        if exists(f'euler{x}.py'):
-            modules.append(import_module(f'euler{x}'))
+    for x in range(1, 771):
+        if exists(f"euler{x}.py"):
+            modules.append(import_module(f"euler{x}"))
 
 else:
     for x in args:
-        if exists(f'euler{x}.py'):
-            modules.append(import_module(f'euler{x}'))
+        if exists(f"euler{x}.py"):
+            modules.append(import_module(f"euler{x}"))
 
 
-with open('data/answers') as fptr:
+with open("data/answers") as fptr:
     answers = fptr.readlines()
 
 answers = [answer.strip() for answer in answers]
 needed_answers = []
 
-for module in modules:
-    needed_answers.append(int(answers[int(module.__name__[5:]) - 1]))
+active_modules = []
+valid_answers = []
 
-answers = needed_answers.copy()
-del(needed_answers)
-answers = [int(answer) for answer in answers]
+for module in modules:
+    prob_idx = int(module.__name__[5:]) - 1
+    if answers[prob_idx] != "None":
+        active_modules.append(module)
+        valid_answers.append(int(answers[prob_idx]))
+
+modules = active_modules
+answers = valid_answers
+
 
 class TestAnswers(unittest.TestCase):
-    @parameterized.expand([f'{module.__name__}', b, c] for module, b, c in zip(modules, modules, answers))
+    @parameterized.expand(
+        [f"{module.__name__}", b, c] for module, b, c in zip(modules, modules, answers)
+    )
     def test_all_tests(self, name, module, answer):
         derived_answer, mem, time = module.find_answer()
-        self.assertEqual(int(derived_answer), int(answer), f'{name} should have gotten {answer} but got {derived_answer}')
-        self.assertEqual(True, float(time[28:]) < time_limit, f'{name} took {time} seconds, but had a limit of {time_limit} seconds')
-        self.assertEqual(True, float(mem[17:-3]) < mem_limit, f'{name} used {mem} MB of memory, but had a limit of {mem_limit} MB')
+        self.assertEqual(
+            int(derived_answer),
+            int(answer),
+            f"{name} should have gotten {answer} but got {derived_answer}",
+        )
+        self.assertEqual(
+            True,
+            float(time[28:]) < time_limit,
+            f"{name} took {time} seconds, but had a limit of {time_limit} seconds",
+        )
+        self.assertEqual(
+            True,
+            float(mem[17:-3]) < mem_limit,
+            f"{name} used {mem} MB of memory, but had a limit of {mem_limit} MB",
+        )
 
 
-
-if __name__ == '__main__':
-    print(f'Each test must run in under {time_limit} seconds and use less than {mem_limit}MB of memory')
-    print(f'Running {len(answers)} test(s). Please be patient.\n')
+if __name__ == "__main__":
+    print(
+        f"Each test must run in under {time_limit} seconds and use less than {mem_limit}MB of memory"
+    )
+    print(f"Running {len(answers)} test(s). Please be patient.\n")
     unittest.main()
