@@ -79,3 +79,17 @@ def test_octagonal_numbers_recurrence_relation():
     for _ in range(20):
         a = randint(10, 50)
         assert euler.octagon_number(a) == euler.octagon_number(a - 1) + 6 * a - 5
+
+
+def test_convert_to_base_invalid_input():
+    with pytest.raises(TypeError):
+        euler.convert_to_base("10", 2)
+    with pytest.raises(TypeError):
+        euler.convert_to_base(10, "2")
+    with pytest.raises(ValueError):
+        euler.convert_to_base(10, 1)
+
+
+def test_convert_to_base():
+    assert euler.convert_to_base(0, 2) == [0]
+    assert euler.convert_to_base(750, 16) == [2, 14, 14]

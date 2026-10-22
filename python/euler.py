@@ -8,32 +8,32 @@ class CustomError(Exception):
 
 
 def triangular(n):
-    """Returns True if n is a triangular number, False elsewise"""
+    """Returns True if n is a triangular number, False otherwise"""
     return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
 
 
 def square(n):
-    """Returns True if n is a square number, False elsewise"""
+    """Returns True if n is a square number, False otherwise"""
     return math.sqrt(n) % 1 == 0
 
 
 def pentagonal(n):
-    """Returns True if n is a pentagonal number, False elsewise"""
+    """Returns True if n is a pentagonal number, False otherwise"""
     return ((1 + math.sqrt(1 + (24 * n))) / 6) % 1 == 0
 
 
 def hexagonal(n):
-    """Returns True if n is a hexagonal number, False elsewise"""
+    """Returns True if n is a hexagonal number, False otherwise"""
     return ((1 + math.sqrt(1 + (8 * n))) / 4) % 1 == 0
 
 
 def heptagonal(n):
-    """Returns True if n as a heptagonal number, False elsewise"""
+    """Returns True if n as a heptagonal number, False otherwise"""
     return ((3 + math.sqrt(9 + (40 * n))) / 10) % 1 == 0
 
 
 def octagonal(n):
-    """Returns True if n as a octagonal number, False elsewise"""
+    """Returns True if n as a octagonal number, False otherwise"""
     return ((1 + math.sqrt(3 * n + 1)) / 3) % 1 == 0
 
 
@@ -68,30 +68,35 @@ def octagon_number(n):
 
 
 def convert_to_base(to_convert, base):
+    """Converts a base 10 number into an array of digits representing the number
+    in base"""
+    if type(base) is not int or type(to_convert) is not int:
+        raise TypeError("Both to_convert and base must be integers")
+    if base < 2:
+        raise ValueError("Base must be at least two")
+    if to_convert == 0:
+        return [0]
+    if to_convert < 0:
+        is_neg = True
+        to_convert *= -1
+    else:
+        is_neg = False
+
     number_stack = []
 
     while to_convert > 0:
         to_convert, remainder = divmod(to_convert, base)
         number_stack.append(remainder)
 
+    if is_neg:
+        number_stack.append("-")
     number_stack.reverse()
     return number_stack
 
 
 def transpose(a):
-    """Transposes a 2 dimensional array
-
-    each sub-array must be the same length as the outer array
-    i.e. the array must be square
-    [[1,2,3], [4,5,6], [7,8,9]] returns [[1,4,7], [2,5,8], [3,6,9]]
-
-    If there are more columns than rows, it drops the additional columns
-    [[1,2,3], [4,5,6]] returns [[1,4], [2,5]]
-
-    If there are more rows than columns, returns an IndexError
-    [[1,2], [3,4], [5,6]] returns IndexError
-    """
-    return [[row[i] for row in a] for i in range(len(a))]
+    """Transposes a 2 dimensional array"""
+    return [[row[i] for row in a] for i in range(len(a[0]))]
 
 
 def read_input(input_file_string=None):
@@ -120,7 +125,7 @@ def read_input(input_file_string=None):
 
 
 def is_permutation(a, b):
-    """Returns True if a is a permutation of b, False elsewise"""
+    """Returns True if a is a permutation of b, False otherwise"""
     a = list(str(a))
     b = list(str(b))
 
@@ -210,7 +215,7 @@ def digital_sum(n):
 
 
 def n_pandigital(n, l=None):
-    """Returns True if pandigital, False elsewise
+    """Returns True if pandigital, False otherwise
 
     If l is not passed, it checks for pandigital from 1 through len(n)
     else checks if it is pandigital from 1 through l
@@ -273,7 +278,7 @@ def proper_divisors(n):
 
 
 def is_prime(n):
-    """Returns True if prime, False elsewise"""
+    """Returns True if prime, False otherwise"""
     if n < 2:
         return False
 
@@ -301,7 +306,7 @@ def factors(n):
 
 
 def is_palindrome(x):
-    """Returns True if x is a palindrome, False elsewise.
+    """Returns True if x is a palindrome, False otherwise.
 
     No error checking, please only pass lists and strings. 'Abcba' is False because of the capital A
     """
@@ -398,7 +403,7 @@ def prime_sieve_gen(n):
 
 
 def unique(args, length=None):
-    """Takes an arbitrary number of lists. Returns True if all items are unique, False elsewise.
+    """Takes an arbitrary number of lists. Returns True if all items are unique, False otherwise.
 
     Don't pass in multiple lists, pass in a list of lists. Sorry.
     unique takes the optional length parameter. If passed, all lists must be that length to be considered True
@@ -418,7 +423,7 @@ def unique(args, length=None):
 
 
 def unique_no_length(args):
-    """Takes an arbitrary number of lists. Returns True if all items are unique, False elsewise.
+    """Takes an arbitrary number of lists. Returns True if all items are unique, False otherwise.
 
     Don't pass in multiple lists, pass in a list of lists. Sorry.
     """
