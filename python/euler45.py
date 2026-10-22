@@ -7,11 +7,12 @@
 
 # Find the next triangle number that is also pentagonal and hexagonal.
 
-from euler import pentagonal, hexagonal, triangle_number
+from euler import is_pentagonal, is_hexagonal, triangle_number
 from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -19,13 +20,13 @@ def find_answer():
     while True:
         num += 1
 
-        if pentagonal(triangle_number(num)) and hexagonal(triangle_number(num)):
+        if is_pentagonal(triangle_number(num)) and is_hexagonal(triangle_number(num)):
             return triangle_number(num)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

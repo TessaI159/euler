@@ -131,21 +131,15 @@ def read_input(input_file_string=None):
 
 def is_permutation(a, b):
     """Returns True if a is a permutation of b, False otherwise"""
-    a = list(str(a))
-    b = list(str(b))
-
-    a.sort()
-    b.sort()
-
-    return a == b
+    sa = str(a)
+    sb = str(b)
+    return len(sa) == len(sb) and sorted(sa) == sorted(sb)
 
 
 def mult(m):
     """Like the built-in sum, but uses multiplication instead of addition"""
-    answer = 1
-    for arg in m:
-        answer *= int(arg)
-    return answer
+    mi = [int(arg) for arg in m]
+    return math.prod(mi)
 
 
 def phi(num):
