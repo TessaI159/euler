@@ -162,3 +162,5 @@ def test_is_permutation():
 
 def test_string_sort():
     assert euler.string_sort("ciwldigj") == "cdgiijlw"
+    assert euler.string_sort("CIWldiGj") == "CGIWdijl"
+    assert euler.caseless_string_sort("CIWldiGj") == "cdgiijlw"

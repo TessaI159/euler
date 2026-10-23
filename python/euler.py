@@ -175,13 +175,24 @@ def caseless_string_sort(s):
     """Takes a string and returns a sorted string with all lowercase letters"""
 
     if not isinstance(s, str):
-        raise TypeError("s is not a string")
+        raise TypeError("s is not a string.")
     return "".join(sorted(s.lower()))
 
 
 def digital_sum(n):
     """Returns the digital sum of n"""
+    if type(n) is not int:
+        raise TypeError("n must be an integer.")
     return sum(int(c) for c in str(abs(n)))
+
+
+def complete_digital_sum(n):
+    if type(n) is not int:
+        raise TypeError("n must be an integer")
+    n = abs(n)
+    while n > 9:
+        n = digital_sum(n)
+    return n
 
 
 def n_pandigital(n, l=None):
@@ -190,25 +201,14 @@ def n_pandigital(n, l=None):
     If l is not passed, it checks for pandigital from 1 through len(n)
     else checks if it is pandigital from 1 through l
     """
-    if True in [isinstance(n, set), isinstance(n, tuple), isinstance(n, list)]:
-        n = [str(x) for x in n]
-        n = "".join(n)
+    if isinstance(n, (list, tuple, set)):
+        n = "".join(str(x) for x in n)
+    else:
+        n = str(n)
 
-    if isinstance(l, float):
-        l = int(l)
+    l = int(l) if l is not None else len(n)
 
-    n = str(n)
-    if not l:
-        l = len(n)
-
-    if len(n) != l:
-        return False
-
-    comp = "".join([str(x) for x in range(1, l + 1)])
-    n = string_sort(n)
-    comp = string_sort(comp)
-
-    return n == comp
+    return len(n) == l and set(n) == set("123456789"[:l])
 
 
 def to_binary(num):
