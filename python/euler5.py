@@ -2,16 +2,18 @@
 
 # What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 def calc(constraint, step=None):
     """Calculates the smallest number divisible by all numbers from 1 to constraint"""
     if constraint == 1:
         return 1
-    
+
     if not step:
         step = constraint
         div = 2
@@ -36,7 +38,7 @@ def calc(constraint, step=None):
                 current += step
             else:
                 return current
-            
+
 
 @tamd
 def find_answer():
@@ -45,12 +47,11 @@ def find_answer():
         s = calc(x, s)
     return s
 
-if __name__ == '__main__':
-    print(filename, ': ', end='')
+
+if __name__ == "__main__":
+    print(filename, ": ", end="")
     answer, mem, time = find_answer()
 
     print(answer)
     print(mem)
     print(time)
-
-    

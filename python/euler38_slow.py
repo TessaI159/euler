@@ -9,29 +9,30 @@
 
 # What is the largest 1 to 9 pandigital 9-digit number that can be formed as the concatenated product of an integer with (1,2, ... , n) where n > 1?
 
-from euler import n_pandigital
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import n_pandigital
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     maximum = 0
     for lim in range(2, 10):
         for x in range(1, 10**5):
-            answers = ''
-            for n in range(1,lim + 1):
+            answers = ""
+            for n in range(1, lim + 1):
                 answers += str(x * n)
             if n_pandigital(answers, 9) and int(answers) > maximum:
                 maximum = int(answers)
     return maximum
-            
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

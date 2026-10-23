@@ -6,35 +6,37 @@
 
 # HINT: Some products can be obtained in more than one way so be sure to only include it once in your sum.
 
-from decorator import time_and_memory_decorator as tamd
 from itertools import permutations
 from pathlib import Path
-import sys
+
+from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
+
 def sub_string_multiplication(perm):
-    perm = ''.join(perm)
+    perm = "".join(perm)
     if int(perm[:2]) * int(perm[2:5]) == int(perm[5:]):
         return int(perm[5:])
-    
+
     if int(perm[:1]) * int(perm[1:5]) == int(perm[5:]):
         return int(perm[5:])
 
-    
+
 @tamd
 def find_answer():
     ans = []
-    perms = (x for x in permutations('123456789'))
-    
+    perms = (x for x in permutations("123456789"))
+
     for p in perms:
-        if (temp := sub_string_multiplication(p)):            
+        if temp := sub_string_multiplication(p):
             ans.append(temp)
     ans = set(ans)
     return sum(ans)
 
-if __name__ == '__main__':
-    print(filename, ': ', end='')
+
+if __name__ == "__main__":
+    print(filename, ": ", end="")
 
     answer, mem, time = find_answer()
     print(answer)

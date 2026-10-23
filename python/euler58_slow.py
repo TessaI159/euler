@@ -13,11 +13,13 @@
 # If one complete new layer is wrapped around the spiral above, a square spiral with side length 9 will be formed. If this process is continued, what is the side length of the square spiral for which the ratio of primes along both
 # diagonals first falls below 10%?
 
-from euler import is_prime
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import is_prime
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -29,26 +31,24 @@ def find_answer():
     # Starting from the top-right and moving anticlockwise
     corners = [31, 37, 43, 49]
     increases = [26, 28, 30, 32]
-    
-    while prime_ratio >= .1:
-        
+
+    while prime_ratio >= 0.1:
         for index, increase in enumerate(increases):
             corner_count += 1
             corners[index] += increase
             increases[index] += 8
-            
+
             if is_prime(corners[index]):
                 prime_count += 1
         prime_ratio = prime_count / corner_count
         side_length += 2
-        
+
     return side_length
-    
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

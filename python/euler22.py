@@ -5,20 +5,22 @@
 
 # What is the total of all the name scores in the file?
 
-from decorator import time_and_memory_decorator as tamd
-from euler import read_input
 import string
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import read_input
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     input_data = read_input(filename)
-    
+
     input_data = input_data[0]
-    input_data = input_data.split(',')
-    input_data = [x.replace('"', '') for x in input_data]
+    input_data = input_data.split(",")
+    input_data = [x.replace('"', "") for x in input_data]
     input_data.sort()
 
     alphabet = list(string.ascii_lowercase)
@@ -29,14 +31,13 @@ def find_answer():
         for c in name:
             name_score += alphabet.index(c.lower()) + 1
         total_score += name_score * (n_index + 1)
-        
+
     return total_score
 
-            
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

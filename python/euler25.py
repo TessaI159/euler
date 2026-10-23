@@ -19,10 +19,12 @@
 
 # What is the index of the first term in the Fibonacci sequence to contain 1000 digits?
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -36,9 +38,9 @@ def find_answer():
     return index
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

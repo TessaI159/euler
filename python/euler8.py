@@ -23,27 +23,29 @@
 
 # Find the thirteen adjacent digits in the 1000-digit number that have the greatest product. What is the value of this product?
 
-from decorator import time_and_memory_decorator as tamd
-from euler import read_input
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import read_input
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer(n=13):
     input_data = read_input(filename)
-    input_data = ''.join(input_data)
+    input_data = "".join(input_data)
     total = 0
-    
+
     for i in range(len(input_data) - n + 1):
         answer = 1
         for j in range(n):
             answer *= int(input_data[i + j])
-        if answer > total:
-            total = answer
+        total = max(total, answer)
     return total
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
     answer, mem, time = find_answer()
 

@@ -12,16 +12,17 @@
 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 def collatz_length(n, memo=None):
     if memo:
         if n in memo.keys():
             return memo[n]
-    
     l = 1
     while n != 1:
         if n in memo.keys():
@@ -33,6 +34,7 @@ def collatz_length(n, memo=None):
             n = (3 * n) + 1
         l += 1
     return l
+
 
 def collatz_length_no_memo(n):
     l = 1
@@ -51,13 +53,13 @@ def find_answer():
     r_ans = 0
     memo = dict()
     memo[2] = collatz_length(2, dict())
-    for x in range(1,1000000):
+    for x in range(1, 1000000):
         l = collatz_length(x, memo)
         memo[x] = l
         if l > ans:
             ans = l
             r_ans = x
-            
+
     return r_ans
 
     # ans = 0
@@ -67,10 +69,11 @@ def find_answer():
     #         if l > ans:
     #             ans = l
     #             real_ans = x
-                
+
     # return real_ans
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
 
     answer, mem, time = find_answer()

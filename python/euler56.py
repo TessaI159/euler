@@ -2,26 +2,28 @@
 
 # Considering natural numbers of the form, ab, where a, b < 100, what is the maximum digital sum?
 
-from euler import digital_sum
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import digital_sum
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     max_digital = 0
-    
-    for a in range(1,100):
-        for b in range(1,100):
+
+    for a in range(1, 100):
+        for b in range(1, 100):
             if (temp := digital_sum(a**b)) > max_digital:
                 max_digital = temp
     return max_digital
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

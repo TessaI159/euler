@@ -17,9 +17,10 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 
 
+from pathlib import Path
+
 from decorator import time_and_memory_decorator as tamd
 from euler import factors, triangle_number
-from pathlib import Path
 
 filename = Path(__file__).stem
 
@@ -32,11 +33,11 @@ def find_answer(n=500):
     while length < n:
         x += 1
         length = len(factors(triangle_number(x)))
-        
-    return triangle_number(x)
-        
 
-if __name__ == '__main__':
+    return triangle_number(x)
+
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
     answer, mem, time = find_answer()
 

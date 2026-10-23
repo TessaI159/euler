@@ -4,10 +4,12 @@
 
 # How many such routes are there through a 20×20 grid?
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer(x=20):
@@ -17,7 +19,7 @@ def find_answer(x=20):
     return int(c)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
 
     answer, mem, time = find_answer()

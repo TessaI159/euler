@@ -10,22 +10,23 @@
 # corner of each solution grid; for example, 483 is the 3-digit number found in the top
 # left corner of the first solution grid (row 0, columns 0, 1, 2).
 
-from decorator import time_and_memory_decorator as tamd
-from euler import read_input
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import read_input
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     raw_lines = read_input()
     # TODO: Parse 50 grids and solve each puzzle
-    pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

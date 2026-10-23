@@ -6,10 +6,10 @@
 # NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) contains 20 letters.
 # The use of "and" when writing out numbers is in compliance with British usage.
 
-from euler import ones_place, tens_place, hundreds_place, teens
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import hundreds_place, ones_place, teens, tens_place
 
 filename = Path(__file__).stem
 
@@ -17,47 +17,38 @@ filename = Path(__file__).stem
 @tamd
 def find_answer(*args, **kwargs):
     letters = 0
-    for x in range(1,1001):
-        add = ''
+    for x in range(1, 1001):
+        add = ""
         if x < 10:
             add += ones_place[x]
-            
-            
-        elif x in range(10,20):
+
+        elif x in range(10, 20):
             add += teens[int(str(x)[-1])]
-            
-            
-        elif x in range(20,100):
+
+        elif x in range(20, 100):
             add += tens_place[int(str(x)[0])]
             add += ones_place[int(str(x)[1])]
-            
 
-        elif x in range(100,1000):
+        elif x in range(100, 1000):
             add += hundreds_place[int(str(x)[0])]
 
-
             if x % 100 != 0:
-                add += 'and'
-                
-            if str(x)[1] == '1':
+                add += "and"
+
+            if str(x)[1] == "1":
                 add += teens[int(str(x)[-1])]
 
             else:
                 add += tens_place[int(str(x)[1])]
                 add += ones_place[int(str(x)[-1])]
-                
 
-                
         letters += len(add)
-    letters += len('onethousand')
+    letters += len("onethousand")
 
-                
-            
     return letters
-        
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
 
     answer, mem, time = find_answer()

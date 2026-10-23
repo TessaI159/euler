@@ -9,8 +9,9 @@
 
 # Find the sum of the digits in the numerator of the 100th convergent of the continued fraction e
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
 from euler import digital_sum
 
 filename = Path(__file__).stem
@@ -18,6 +19,7 @@ filename = Path(__file__).stem
 # The numerator is equal to the sum of the previous two numerators
 # However, every third numerator is equal to the previous numerator times a_k + the previous numerator before that one
 # ^^ This is definitely the most eloquent sentence I've ever written
+
 
 @tamd
 def find_answer():
@@ -33,18 +35,18 @@ def find_answer():
         else:
             mod = 1
 
-        prev_numerators.append(mod * prev_numerators[index - 2] + prev_numerators[index - 3])
+        prev_numerators.append(
+            mod * prev_numerators[index - 2] + prev_numerators[index - 3]
+        )
         numerator_count += 1
         index += 1
 
     return digital_sum(prev_numerators[-1])
 
-    
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

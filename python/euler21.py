@@ -5,31 +5,34 @@
 
 # Evaluate the sum of all the amicable numbers under 10000.
 
-from decorator import time_and_memory_decorator as tamd
-from euler import proper_divisors
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import proper_divisors
+
 filename = Path(__file__).stem
+
 
 def d(n):
     return sum(proper_divisors(n))
 
+
 @tamd
 def find_answer():
     ans = []
-    
+
     for n in range(100, 10000):
         b = d(n)
         a = d(b)
         if a == n and a != b:
             ans.append(n)
-            
+
     return sum(set(ans))
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

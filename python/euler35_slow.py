@@ -4,12 +4,13 @@
 
 # How many circular primes are there below one million?
 
-from euler import prime_sieve, is_prime
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import is_prime, prime_sieve
 
 filename = Path(__file__).stem
+
 
 def circular_prime(number):
     number = list(str(number))
@@ -21,15 +22,13 @@ def circular_prime(number):
                 continue
             new_number.append(number[j])
         new_number.append(number[0])
-        if not is_prime(int(''.join(new_number))):
+        if not is_prime(int("".join(new_number))):
             return False
         number = new_number.copy()
         new_number.clear()
 
     return True
-    
-        
-    
+
 
 @tamd
 def find_answer():
@@ -38,13 +37,13 @@ def find_answer():
 
     for i in sieve:
         if circular_prime(i):
-            num_of_circulars += 
+            num_of_circulars += 1
     return num_of_circulars
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

@@ -2,17 +2,19 @@
 
 # What is the sum of the digits of the number 21000?
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
+
 @tamd
 def find_answer(p=1000):
-    return sum([int(x) for x in str(2 ** p)])
-        
+    return sum([int(x) for x in str(2**p)])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
 
     answer, mem, time = find_answer()

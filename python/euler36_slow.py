@@ -4,11 +4,13 @@
 
 # (Please note that the palindromic number, in either base, may not include leading zeros.)
 
-from euler import is_palindrome, to_binary
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import is_palindrome, to_binary
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -20,9 +22,9 @@ def find_answer():
     return sum_of_palindromes
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

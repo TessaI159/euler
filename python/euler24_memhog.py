@@ -5,21 +5,23 @@
 
 # What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 
-from decorator import time_and_memory_decorator as tamd
 from itertools import permutations
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
 
+
 @tamd
-def find_answer(string='0123456789', ind=10**6):
-    permutions = sorted(''.join(chars) for chars in permutations(string))
+def find_answer(string="0123456789", ind=10**6):
+    permutions = sorted("".join(chars) for chars in permutations(string))
     return permutions[ind - 1]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

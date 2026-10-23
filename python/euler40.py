@@ -10,15 +10,17 @@
 
 # Trivial in Python
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     x = 1
-    champernowne = ''
+    champernowne = ""
     while len(champernowne) < 10**6 + 1:
         champernowne += str(x)
         x += 1
@@ -28,13 +30,13 @@ def find_answer():
     while i <= 10**6:
         answer *= int(champernowne[i - 1])
         i *= 10
-        
+
     return answer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

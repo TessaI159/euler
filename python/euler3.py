@@ -4,19 +4,21 @@
 
 # Answer: 6857
 
-from euler import is_prime, prime_factors
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import prime_factors
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     return prime_factors(600851475143)[-1]
 
 
-if __name__ == '__main__':
-    print(filename, ': ', end='')
+if __name__ == "__main__":
+    print(filename, ": ", end="")
     answer, mem, time = find_answer()
 
     print(answer)

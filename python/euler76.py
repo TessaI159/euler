@@ -6,13 +6,13 @@
 # 2+2+1
 # 2+1+1+1
 # 1+1+1+1+1
+from pathlib import Path
 
 from decorator import time_and_memory_decorator as tamd
-from pathlib import Path
 
 filename = Path(__file__).stem
 
-numbers = [x for x in range(1,100)]
+numbers = [x for x in range(1, 100)]
 target = 100
 solutions = [1] + [0] * target
 
@@ -25,12 +25,11 @@ def find_answer():
     return solutions[-1]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)
     print(mem)
     print(time)
-

@@ -1,6 +1,6 @@
+import functools
 import tracemalloc
 from time import perf_counter
-import functools
 
 
 def time_and_memory_decorator(func):

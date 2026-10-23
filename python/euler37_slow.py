@@ -4,11 +4,13 @@
 
 # NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
 
-from euler import is_prime, infinite_primes
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import infinite_primes, is_prime
+
 filename = Path(__file__).stem
+
 
 def trunc_left(num):
     num = str(num)[1:]
@@ -18,7 +20,8 @@ def trunc_left(num):
             return False
         num = num[1:]
     return True
-                        
+
+
 def trunc_right(num):
     num = str(num)[:-1]
 
@@ -28,30 +31,27 @@ def trunc_right(num):
         num = num[:-1]
     return True
 
+
 @tamd
 def find_answer():
 
     sum_primes = 0
     count = 0
-    
-    infin_primes = infinite_primes(9)
 
+    infin_primes = infinite_primes(9)
 
     while count < 11:
         next_prime = next(infin_primes)
         if trunc_left(next_prime) and trunc_right(next_prime):
             count += 1
             sum_primes += next_prime
-            
+
     return sum_primes
 
-    
-        
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

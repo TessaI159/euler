@@ -7,12 +7,13 @@
 
 # I legitimately solved this one by hand before I solved it with Python
 
-from euler import read_input
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
-from itertools import permutations
+
+from decorator import time_and_memory_decorator as tamd
+from euler import read_input
 
 filename = Path(__file__).stem
+
 
 def in_order(a, b, lis):
     for i, l in enumerate(lis):
@@ -22,7 +23,7 @@ def in_order(a, b, lis):
             b_ind = i
 
     return a_ind < b_ind
-        
+
 
 def swap(a, b, lis):
     i, j = lis.index(a), lis.index(b)
@@ -45,11 +46,10 @@ def find_answer():
                 continue
             else:
                 swap(inp[p], inp[p + 1], passcode)
-    return ''.join(passcode)
+    return "".join(passcode)
 
-    
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
 
     answer, mem, time = find_answer()

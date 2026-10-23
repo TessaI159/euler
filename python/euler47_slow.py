@@ -11,20 +11,21 @@
 
 # Find the first four consecutive integers to have four distinct prime factors each. What is the first of these numbers?
 
-from euler import prime_factors, combine, unique
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import combine, prime_factors, unique
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer(length=4):
     first = 3
     distincts = []
 
-    for x in range(first, first+length):
+    for x in range(first, first + length):
         distincts.append(combine(prime_factors(x)))
-    
 
     while True:
         first += 1
@@ -33,12 +34,11 @@ def find_answer(length=4):
 
         if unique(distincts, length):
             return first
-        
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

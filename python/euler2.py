@@ -6,23 +6,25 @@
 
 # Answer: 4613732
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
     answer, current, previous = 0, 0, 1
-    while(current < 4000000):
-        previous, current = current, current+previous
-        if(current % 2 == 0):
+    while current < 4000000:
+        previous, current = current, current + previous
+        if current % 2 == 0:
             answer += current
     return answer
 
 
-if __name__ == '__main__':
-    print(filename, ': ', end='')
+if __name__ == "__main__":
+    print(filename, ": ", end="")
     answer, mem, time = find_answer()
 
     print(answer)

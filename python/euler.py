@@ -1,5 +1,5 @@
-import math
 import inspect
+import math
 from pathlib import Path
 
 
@@ -181,13 +181,7 @@ def caseless_string_sort(s):
 
 def digital_sum(n):
     """Returns the digital sum of n"""
-    n = str(n)
-    if len(n) == 1:
-        return int(n)
-    ans = 0
-    for c in n:
-        ans += int(c)
-    return ans
+    return sum(int(c) for c in str(abs(n)))
 
 
 def n_pandigital(n, l=None):

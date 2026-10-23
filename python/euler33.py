@@ -6,50 +6,53 @@
 
 # If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 def simplify_fraction(numerator, denominator):
     divided = True
     while divided:
         divided = False
-        for i in range(2,numerator):
+        for i in range(2, numerator):
             if numerator % i == 0 and denominator % i == 0:
                 numerator /= i
                 numerator = int(numerator)
                 denominator /= i
                 denominator = int(denominator)
                 divided = True
-                
+
                 if denominator % numerator == 0:
                     denominator /= numerator
                     numerator /= numerator
                     numerator = int(numerator)
                     denominator = int(denominator)
-    
+
     return numerator, denominator
+
 
 def naive_simplify_fraction(numerator, denominator):
     numerator_l = list(str(numerator))
     denominator_l = list(str(denominator))
 
-    if '0' in numerator_l and '0' in denominator_l:
+    if "0" in numerator_l and "0" in denominator_l:
         return 0, 0
 
     if numerator_l[0] in denominator_l:
         denominator_l.remove(numerator_l[0])
         numerator_l.remove(numerator_l[0])
-        return int(''.join(numerator_l)), int(''.join(denominator_l))
-        
+        return int("".join(numerator_l)), int("".join(denominator_l))
+
     elif numerator_l[1] in denominator_l:
         denominator_l.remove(numerator_l[1])
         numerator_l.remove(numerator_l[1])
-        return int(''.join(numerator_l)), int(''.join(denominator_l))
+        return int("".join(numerator_l)), int("".join(denominator_l))
 
     return 0, 0
-        
+
 
 @tamd
 def find_answer():
@@ -57,10 +60,10 @@ def find_answer():
     naive = []
     simp = []
     dumb_frac = []
-    for a in range(10,100):
-        for b in range(a+1,99):
-            naive.append(naive_simplify_fraction(a,b))
-            simp.append(simplify_fraction(a,b))
+    for a in range(10, 100):
+        for b in range(a + 1, 99):
+            naive.append(naive_simplify_fraction(a, b))
+            simp.append(simplify_fraction(a, b))
             frac.append((a, b))
 
     for n, s, f in zip(naive, simp, frac):
@@ -69,17 +72,17 @@ def find_answer():
                 dumb_frac.append(f)
     a_total = 1
     b_total = 1
-    
+
     for a, b in dumb_frac:
         a_total *= a
         b_total *= b
 
     return simplify_fraction(a_total, b_total)[1]
-                
-    
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

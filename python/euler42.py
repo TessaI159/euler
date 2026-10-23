@@ -7,36 +7,40 @@
 # Using data/euler42_input.txt, a 16K text file containing nearly two-thousand common English words, how many are triangle words?
 
 from math import sqrt
-from euler import read_input
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
+from euler import read_input
 
 MAGIC_NUMBER = 96
 
 filename = Path(__file__).stem
 
+
 def triangular(n):
     return ((-1 + sqrt(1 + (8 * n))) / 2) % 1 == 0
+
 
 @tamd
 def find_answer():
     input_data = read_input(filename)
     input_data = input_data[0]
     total_triangles = 0
-    
-    for word in input_data.split(','):
+
+    for word in input_data.split(","):
         this_number = 0
-        word = word.replace('"', '').lower()
+        word = word.replace('"', "").lower()
         for letter in word:
             this_number += ord(letter) - MAGIC_NUMBER
         if triangular(this_number):
             total_triangles += 1
-            
+
     return total_triangles
-        
-if __name__ == '__main__':
+
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

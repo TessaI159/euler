@@ -13,15 +13,17 @@
 # Find T(10**12)
 
 from math import sqrt
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 # small_number, large_number
 def s_number(sn, ln):
     pwr = 1
-    
+
     while True:
         pwr *= 10
 
@@ -35,8 +37,6 @@ def s_number(sn, ln):
         if left + right == sn:
             return True
 
-        
-
         # If left has more than two digits, we continue.
         # Otherwise, we do not.
         if left < 10:
@@ -47,13 +47,12 @@ def s_number(sn, ln):
         # Against the number we are left with after subtraction
         if sn > right and (s_number(sn - right, left)):
             return True
-        
 
 
 def square_generator(lim):
     for num in range(4, int(sqrt(lim) + 1)):
         yield num**2
-        
+
 
 @tamd
 def find_answer(lim=10**12):
@@ -66,9 +65,9 @@ def find_answer(lim=10**12):
     return answer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

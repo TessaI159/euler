@@ -6,8 +6,9 @@
 # 1×£1 + 1×50p + 2×20p + 1×5p + 1×2p + 3×1p
 # How many different ways can £2 be made using any number of coins?
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
@@ -25,9 +26,9 @@ def find_answer():
     return solutions[-1]
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

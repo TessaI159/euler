@@ -6,13 +6,15 @@
 
 # Find the value of n ≤ 1,000,000 for which n/φ(n) is a maximum.
 
-from euler import prime_sieve_gen
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
+from euler import prime_sieve_gen
 
 filename = Path(__file__).stem
 
 primes = prime_sieve_gen(1500)
+
 
 @tamd
 def find_answer():
@@ -22,15 +24,15 @@ def find_answer():
     for prime in primes:
         if answer * prime > 10**6:
             break
-        
+
         answer *= prime
 
     return answer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

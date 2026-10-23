@@ -11,31 +11,52 @@
 
 # How many Sundays fell on the first of the month during the twentieth century (1 Jan 1901 to 31 Dec 2000)?
 
-from decorator import time_and_memory_decorator as tamd
 from enum import Enum
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
 week = 7
 
 months = dict()
-months['january'] = 31
-months['february'] = 28
-months['march'] = 31
-months['april'] = 30
-months['may'] = 31
-months['june'] = 30
-months['july'] = 31
-months['august'] = 31
-months['september'] = 30
-months['october'] = 31
-months['november'] = 30
-months['december'] = 31
+months["january"] = 31
+months["february"] = 28
+months["march"] = 31
+months["april"] = 30
+months["may"] = 31
+months["june"] = 30
+months["july"] = 31
+months["august"] = 31
+months["september"] = 30
+months["october"] = 31
+months["november"] = 30
+months["december"] = 31
 
-month_names = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december']
-day_names = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday']
-
+month_names = [
+    "january",
+    "february",
+    "march",
+    "april",
+    "may",
+    "june",
+    "july",
+    "august",
+    "september",
+    "october",
+    "november",
+    "december",
+]
+day_names = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+    "sunday",
+]
 
 
 class Day(Enum):
@@ -54,21 +75,22 @@ def find_answer():
     answer = 0
     for x in range(1901, 2001):
         if x % 4 == 0:
-            months['february'] = 29
+            months["february"] = 29
         else:
-            months['february'] = 28
-    
+            months["february"] = 28
+
         for month in month_names:
             if today % week == Day.SUNDAY.value:
                 answer += 1
 
             today += months[month]
-            
+
     return answer
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

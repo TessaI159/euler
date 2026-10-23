@@ -1,12 +1,15 @@
 # Insert question description here
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
+
 def remainder(a, n):
-    return (((a-1)**n)+((a+1)**n)) % (a**2)
+    return (((a - 1) ** n) + ((a + 1) ** n)) % (a**2)
+
 
 def max_remainder(a):
     terms = []
@@ -17,11 +20,8 @@ def max_remainder(a):
         terms.append(remainder(a, n))
         n += 1
     return max(terms)
-    
-        
-        
-        
-    
+
+
 @tamd
 def find_answer():
     total = 0
@@ -30,9 +30,9 @@ def find_answer():
     return total
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

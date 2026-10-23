@@ -13,13 +13,11 @@
 # Your task has been made easy, as the encryption key consists of three lower case characters.
 # Using data/euler59_input.txt, a file containing the encrypted ASCII codes, and the knowledge that the plain text must contain common English words, decrypt the message and find the sum of the ASCII values in the original text.
 
-from euler import read_input
-from string import ascii_lowercase
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+from string import ascii_lowercase
 
-
-
+from decorator import time_and_memory_decorator as tamd
+from euler import read_input
 
 # >>> from lingua import Language, LanguageDetectorBuilder
 # >>> languages = [Language.ENGLISH, Language.FRENCH, Language.GERMAN, Language.SPANISH]
@@ -31,15 +29,15 @@ filename = Path(__file__).stem
 
 # Common words is a list of the 80 most common words in the English language
 with open("data/common_words.txt") as fptr:
-        common_words = fptr.readlines()
+    common_words = fptr.readlines()
 
 common_words = [x.strip() for x in common_words]
-useless_characters = '+!@#$%^&*()-;:><{}'
+useless_characters = "+!@#$%^&*()-;:><{}"
 
 
 # Obviously, this took some human intervention to figure out
 def legible(text):
-    if text[:10] == 'An extract':
+    if text[:10] == "An extract":
         return True
     return False
 
@@ -48,12 +46,11 @@ def decode(secret, key):
     # Secret is a list of numbers representing ASCII characters
     # Key is a list of three lowercase letters representing our key
 
-    decoded = ''
+    decoded = ""
     for index, char in enumerate(secret):
         decoded += chr(ord(key[index % 3]) ^ char)
-    
 
-    for word in decoded.split(' '):
+    for word in decoded.split(" "):
         if word in common_words:
             return decoded
 
@@ -62,20 +59,18 @@ def naive_answer():
     # The key is exp
     # Input data is a list of integers representing ASCII characters
     input_data = read_input(filename)
-    input_data = ''.join(input_data)
-    input_data = input_data.split(',')
+    input_data = "".join(input_data)
+    input_data = input_data.split(",")
     input_data = [int(num) for num in input_data]
-    
 
     alphabet = ascii_lowercase
     # Loop through every three letter combination of lowercase letters
     for letter1 in alphabet:
         for letter2 in alphabet:
             for letter3 in alphabet:
-                if (decoded := decode(input_data, [letter1, letter2, letter3])):
+                if decoded := decode(input_data, [letter1, letter2, letter3]):
                     if legible(decoded):
                         return decoded
-                
 
 
 @tamd
@@ -86,9 +81,9 @@ def find_answer():
     return answer
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

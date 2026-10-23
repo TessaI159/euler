@@ -4,11 +4,13 @@
 
 # What 12-digit number do you form by concatenating the three terms in this sequence?
 
-from euler import prime_sieve, is_prime
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import is_prime, prime_sieve
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -22,14 +24,15 @@ def find_answer():
         prime3 = prime2 + mod
 
         if is_prime(prime2) and is_prime(prime3):
-            if sorted(list(str(prime))) == sorted(list(str(prime2))) and sorted(list(str(prime2))) == sorted(list(str(prime3))):
-                return f'{prime}{prime2}{prime3}'
-                
+            if sorted(list(str(prime))) == sorted(list(str(prime2))) and sorted(
+                list(str(prime2))
+            ) == sorted(list(str(prime3))):
+                return f"{prime}{prime2}{prime3}"
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

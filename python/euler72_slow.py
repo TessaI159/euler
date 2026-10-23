@@ -3,9 +3,10 @@
 
 # How many reduced proper fractions are there for d\le 10^6?
 
-from euler import totient_product
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
+from euler import totient_product
 
 filename = Path(__file__).stem
 

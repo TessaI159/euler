@@ -2,27 +2,29 @@
 
 # What is the largest n-digit pandigital prime that exists?
 
-from decorator import time_and_memory_decorator as tamd
-from euler import n_pandigital, is_prime
 from itertools import permutations
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import is_prime
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
-    for x in range(9,0,-1):
-        string = ''.join([str(c) for c in range(1,x + 1)])
-        permutions = sorted(int(''.join(chars)) for chars in permutations(string))
+    for x in range(9, 0, -1):
+        string = "".join([str(c) for c in range(1, x + 1)])
+        permutions = sorted(int("".join(chars)) for chars in permutations(string))
         permutions.reverse()
         for p in permutions:
             if is_prime(p):
                 return p
-        
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

@@ -4,10 +4,12 @@
 
 # Answer is 233168
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 def sum_arith_seq(b, e):
     """Returns the sum of all multiples of b below e"""
@@ -15,12 +17,14 @@ def sum_arith_seq(b, e):
     n = a // b
     return ((n * (n + 1)) >> 1) * b
 
+
 @tamd
 def find_answer(n=1000):
-    return sum_arith_seq(3,n) + sum_arith_seq(5,n) - sum_arith_seq(15,n)
+    return sum_arith_seq(3, n) + sum_arith_seq(5, n) - sum_arith_seq(15, n)
 
-if __name__ == '__main__':
-    print(filename, ': ', end='')
+
+if __name__ == "__main__":
+    print(filename, ": ", end="")
 
     answer, mem, time = find_answer()
 

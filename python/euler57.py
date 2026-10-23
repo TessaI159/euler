@@ -1,10 +1,12 @@
 # The example for this one is impossible to copy and paste here easily
 # Find it at https://projecteuler.net/problem=57
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -20,12 +22,13 @@ def find_answer():
         pd, d = d, 2 * d + pd
         if len(str(n)) > len(str(d)):
             answer += 1
-            
+
     return answer
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

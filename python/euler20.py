@@ -7,19 +7,22 @@
 
 # Trivial in Python
 
-from decorator import time_and_memory_decorator as tamd
-from euler import fact
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import fact
+
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer(n=100):
     return sum([int(x) for x in str(fact(n))])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

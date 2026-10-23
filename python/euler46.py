@@ -14,14 +14,17 @@
 # 5777
 
 from math import sqrt
-from euler import prime_sieve, is_prime
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
+from euler import prime_sieve
 
 filename = Path(__file__).stem
 
+
 def twice_square_check(n):
     return sqrt(n / 2) % 1 == 0
+
 
 @tamd
 def find_answer():
@@ -38,15 +41,11 @@ def find_answer():
             if twice_square_check(check - prime):
                 running = True
     return check
-        
-        
-    
 
-    
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

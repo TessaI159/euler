@@ -10,29 +10,31 @@
 
 # Find the sum of all the numbers that can be written as the sum of fifth powers of their digits.
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 def written_as_x_power(x, num):
     s_num = str(num)
     powers = 0
-    
+
     for n in s_num:
-        powers += int(n)**x
-    return sum([int(n)**x for n in s_num]) == num
+        powers += int(n) ** x
+    return sum([int(n) ** x for n in s_num]) == num
 
 
 @tamd
 def find_answer(x=5):
 
-    return sum([n for n in range(2,10**6) if written_as_x_power(x, n)])
+    return sum([n for n in range(2, 10**6) if written_as_x_power(x, n)])
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

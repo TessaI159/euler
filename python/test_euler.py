@@ -1,5 +1,8 @@
-import pytest, euler
 from random import randint
+
+import pytest
+
+import euler
 
 
 @pytest.mark.parametrize(

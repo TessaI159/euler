@@ -7,9 +7,10 @@
 
 # Find the next triangle number that is also pentagonal and hexagonal.
 
-from euler import is_pentagonal, is_hexagonal, triangle_number
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
+from euler import is_hexagonal, is_pentagonal, triangle_number
 
 filename = Path(__file__).stem
 

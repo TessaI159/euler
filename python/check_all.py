@@ -1,8 +1,9 @@
-import unittest
-from os.path import exists
-from parameterized import parameterized
-from importlib import import_module
 import sys
+import unittest
+from importlib import import_module
+from os.path import exists
+
+from parameterized import parameterized
 
 # Each test must run in under time_limit seconds to pass
 time_limit = 1.0
@@ -32,7 +33,6 @@ else:
     for x in args:
         if exists(f"euler{x}.py"):
             modules.append(import_module(f"euler{x}"))
-
 
 with open("data/answers") as fptr:
     answers = fptr.readlines()

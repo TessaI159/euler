@@ -6,25 +6,28 @@
 # There exists exactly one Pythagorean triplet for which a + b + c = 1000.
 # Find the product abc.
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
+
+from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
-def pythagorean_triplet(a,b,c):
+
+def pythagorean_triplet(a, b, c):
     """Returns true if a, b, and c form a Pythagorean triplet, false elsewise"""
     return a**2 + b**2 == c**2
 
+
 @tamd
 def find_answer():
-    for a in range(1,1000):
-        for b in range(a+1, 1000):
+    for a in range(1, 1000):
+        for b in range(a + 1, 1000):
             c = 1000 - (a + b)
-            if pythagorean_triplet(a,b,c):
-                return a*b*c
+            if pythagorean_triplet(a, b, c):
+                return a * b * c
 
-            
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
     answer, mem, time = find_answer()
 

@@ -10,10 +10,12 @@
 
 # What is the sum of the numbers on the diagonals in a 1001 by 1001 spiral formed in the same way?
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+
 filename = Path(__file__).stem
+
 
 def form_spiral(w, h):
     limit = w * h
@@ -21,7 +23,7 @@ def form_spiral(w, h):
     count = 0
     s = 0
     i = 1
-    
+
     while i < limit + 1:
         s += i
         count += 1
@@ -33,18 +35,15 @@ def form_spiral(w, h):
 
     return s
 
-        
-    
-        
 
 @tamd
 def find_answer():
     return form_spiral(1001, 1001)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)

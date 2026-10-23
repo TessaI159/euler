@@ -21,19 +21,20 @@
 # number of primes for consecutive values of n, starting with n = 0
 
 
-from decorator import time_and_memory_decorator as tamd
-from euler import is_prime
 from pathlib import Path
 
+from decorator import time_and_memory_decorator as tamd
+from euler import is_prime
 
 filename = Path(__file__).stem
+
 
 def euler_quad_form(n):
     return n**2 + n + 41
 
 
 def tess_quad_form(n, a, b):
-    return n**2  + (a * n) + b
+    return n**2 + (a * n) + b
 
 
 @tamd
@@ -53,11 +54,11 @@ def find_answer():
                         correct_b = b
                     break
     return correct_a * correct_b
-    
 
-if __name__ == '__main__':
-    print(filename, ': ', end='')
-    
+
+if __name__ == "__main__":
+    print(filename, ": ", end="")
+
     answer, mem, time = find_answer()
 
     print(answer)

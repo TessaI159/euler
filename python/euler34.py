@@ -4,11 +4,13 @@
 
 # Note: As 1! = 1 and 2! = 2 are not sums they are not included.
 
-from decorator import time_and_memory_decorator as tamd
 from pathlib import Path
-from euler import fact, sum_of_fact
+
+from decorator import time_and_memory_decorator as tamd
+from euler import sum_of_fact
 
 filename = Path(__file__).stem
+
 
 @tamd
 def find_answer():
@@ -18,9 +20,10 @@ def find_answer():
             ans += i
     return ans
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     print(filename, ": ", end="")
-    
+
     answer, mem, time = find_answer()
 
     print(answer)
