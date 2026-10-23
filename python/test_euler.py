@@ -148,3 +148,14 @@ def test_transpose():
         [[1, 2], [3, 4]],
         [5, 6],
     ]
+
+
+def test_is_permutation():
+    assert euler.is_permutation("", "") == True
+    assert euler.is_permutation("abc", "cba") == True
+    assert euler.is_permutation("Abc", "cba") == False
+    assert euler.is_permutation(12345, 52341) == True
+
+
+def test_string_sort():
+    assert euler.string_sort("ciwldigj") == "cdgiijlw"

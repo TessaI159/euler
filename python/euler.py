@@ -130,7 +130,7 @@ def read_input(input_file_string=None):
 
 
 def is_permutation(a, b):
-    """Returns True if a is a permutation of b, False otherwise"""
+    """Returns True if a is a permutation of b, False otherwise. Case sensitive"""
     sa = str(a)
     sb = str(b)
     return len(sa) == len(sb) and sorted(sa) == sorted(sb)
@@ -142,33 +142,16 @@ def mult(m):
     return math.prod(mi)
 
 
-def phi(num):
-    ans = 1
-
-    for x in range(int(math.sqrt(num))):
-        if is_prime(x) and num % x == 0:
-            ans *= 1 - 1 / x
-
-    return int(ans * num)
-
-
 def fact(n):
     """Returns the factorial of n. Compatible with floating point numbers"""
-    if n == 0:
-        return 1
-
-    if n < 0:
-        return 0
-
-    a = 1
-    while n > 0:
-        a *= n
-        n -= 1
-
-    if isinstance(n, float):
-        a *= math.gamma(n + 1)
-
-    return a
+    if isinstance(n, int):
+        if n < 0:
+            raise ValueError("n must be non-negative.")
+        return math.factorial(n)
+    elif isinstance(n, float):
+        return math.gamma(n + 1)
+    else:
+        raise TypeError("n must be an integer or a float.")
 
 
 def binom_co(n, k):
@@ -184,22 +167,16 @@ def permutations(n, k):
 def string_sort(s):
     """Takes a string and returns a sorted string. Capital letters come before lowercase letters"""
     if not isinstance(s, str):
-        raise CustomError(f"{s} is not a string")
-    s = list(s)
-    s.sort()
-    s = "".join(s)
-    return s
+        raise TypeError("s is not a string.")
+    return "".join(sorted(s))
 
 
 def caseless_string_sort(s):
     """Takes a string and returns a sorted string with all lowercase letters"""
 
     if not isinstance(s, str):
-        raise CustomError(f"{s} is not a string")
-    s = list(s)
-    s.sort()
-    s = "".join(s)
-    return s
+        raise TypeError("s is not a string")
+    return "".join(sorted(s.lower()))
 
 
 def digital_sum(n):
@@ -500,7 +477,8 @@ def prime_factors(n):
     return answers
 
 
-def euler_totient_product(n):
+def totient_product(n):
+    """Returns the result of Euler's totient function"""
 
     result = n  # Initialize result as n
 
