@@ -164,3 +164,23 @@ def test_string_sort():
     assert euler.string_sort("ciwldigj") == "cdgiijlw"
     assert euler.string_sort("CIWldiGj") == "CGIWdijl"
     assert euler.caseless_string_sort("CIWldiGj") == "cdgiijlw"
+
+
+def test_infinite_primes():
+    import itertools
+
+    first_10 = list(itertools.islice(euler.infinite_primes(), 10))
+    assert first_10 == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]
+
+    # Test boundary starting conditions
+    assert next(euler.infinite_primes(start=7)) == 7
+    assert next(euler.infinite_primes(start=8)) == 11
+    assert next(euler.infinite_primes(start=10)) == 11
+
+    # 1,000th prime is 7919
+    thousandth = next(itertools.islice(euler.infinite_primes(), 999, 1000))
+    assert thousandth == 7919
+
+    # 10,000th prime is 104729
+    ten_thousandth = next(itertools.islice(euler.infinite_primes(), 9999, 10000))
+    assert ten_thousandth == 104729

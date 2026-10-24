@@ -165,7 +165,8 @@ def permutations(n, k):
 
 
 def string_sort(s):
-    """Takes a string and returns a sorted string. Capital letters come before lowercase letters"""
+    """Takes a string and returns a sorted string. Capital letters come before
+    lowercase letters"""
     if not isinstance(s, str):
         raise TypeError("s is not a string.")
     return "".join(sorted(s))
@@ -212,7 +213,8 @@ def n_pandigital(n, l=None):
 
 
 def to_binary(num):
-    """Converts a decinal integer to binary. Raises an error if passed anything other than an int, or an item that is convertable to int"""
+    """Converts a decinal integer to binary. Raises an error if passed anything
+    other than an int, or an item that is convertable to int"""
     try:
         num = int(num)
     except ValueError as e:
@@ -221,20 +223,51 @@ def to_binary(num):
     return bin(num).replace("0b", "")
 
 
-def infinite_primes(num=1):
+def _lazy_primes():
     """Return a generator that will generate infinite primes
 
     This is very, very slow.
     If an even value is passed as num, it attempts to start generating
     primes at num - 1
     """
-    if num % 2 == 0:
-        num -= 1
+    yield 2
+    yield 3
+
+    comps = {}
+
+    primes_feed = _lazy_primes()
+    next(primes_feed)
+    p = next(primes_feed)
+    psq = p * p
+    q = 5
 
     while True:
-        if is_prime(num):
-            yield num
-        num += 2
+        if q not in comps:
+            if q < psq:
+                yield q
+            else:
+                step = 2 * p
+                next_comp = psq + step
+                while next_comp in comps:
+                    next_comp += step
+                comps[next_comp] = step
+                p = next(primes_feed)
+                psq = p * p
+        else:
+            step = comps.pop(q)
+            next_comp = q + step
+            while next_comp in comps:
+                next_comp += step
+            comps[next_comp] = step
+        q += 2
+
+
+def infinite_primes(start=1):
+    """Generates an infinite sequence of primes starting at the first prime >=
+    start"""
+    for p in _lazy_primes():
+        if p >= start:
+            yield p
 
 
 def proper_divisors(n):
