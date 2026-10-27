@@ -87,37 +87,37 @@ def test_octagonal_numbers_recurrence_relation():
 def test_is_triangular():
     for _ in range(20):
         a = randint(10, 50)
-        assert euler.is_triangular(euler.triangle_number(a)) == True
+        assert euler.is_triangular(euler.triangle_number(a)) is True
 
 
 def test_is_square():
     for _ in range(20):
         a = randint(10, 50)
-        assert euler.is_square(euler.square_number(a)) == True
+        assert euler.is_square(euler.square_number(a)) is True
 
 
 def test_is_pentagonal():
     for _ in range(20):
         a = randint(10, 50)
-        assert euler.is_pentagonal(euler.pentagon_number(a)) == True
+        assert euler.is_pentagonal(euler.pentagon_number(a)) is True
 
 
 def test_is_hexagonal():
     for _ in range(20):
         a = randint(10, 50)
-        assert euler.is_hexagonal(euler.hexagon_number(a)) == True
+        assert euler.is_hexagonal(euler.hexagon_number(a)) is True
 
 
 def test_is_heptagonal():
     for _ in range(20):
         a = randint(10, 50)
-        assert euler.is_heptagonal(euler.heptagon_number(a)) == True
+        assert euler.is_heptagonal(euler.heptagon_number(a)) is True
 
 
 def test_is_octagonal():
     for _ in range(20):
         a = randint(10, 50)
-        assert euler.is_octagonal(euler.octagon_number(a)) == True
+        assert euler.is_octagonal(euler.octagon_number(a)) is True
 
 
 def test_convert_to_base_invalid_input():
@@ -154,10 +154,10 @@ def test_transpose():
 
 
 def test_is_permutation():
-    assert euler.is_permutation("", "") == True
-    assert euler.is_permutation("abc", "cba") == True
-    assert euler.is_permutation("Abc", "cba") == False
-    assert euler.is_permutation(12345, 52341) == True
+    assert euler.is_permutation("", "") is True
+    assert euler.is_permutation("abc", "cba") is True
+    assert euler.is_permutation("Abc", "cba") is False
+    assert euler.is_permutation(12345, 52341) is True
 
 
 def test_string_sort():
@@ -184,3 +184,22 @@ def test_infinite_primes():
     # 10,000th prime is 104729
     ten_thousandth = next(itertools.islice(euler.infinite_primes(), 9999, 10000))
     assert ten_thousandth == 104729
+
+
+def test_is_palindrome():
+    assert euler.is_palindrome("racecar") is True
+    assert euler.is_palindrome("Abcba") is False
+    assert euler.is_palindrome(12321) is True
+    assert euler.is_palindrome(12345) is False
+    assert euler.is_palindrome([1, 2, 3, 2, 1]) is True
+    assert euler.is_palindrome([1, 2, 3]) is False
+
+
+def test_to_binary():
+    assert euler.to_binary(0) == "0"
+    assert euler.to_binary(-1) == "-1"
+    assert euler.to_binary(170) == "10101010"
+    with pytest.raises(ValueError):
+        euler.to_binary(1.1)
+        euler.to_binary("1.1")
+        euler.to_binary("170")

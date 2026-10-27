@@ -213,20 +213,12 @@ def n_pandigital(n, l=None):
 
 
 def to_binary(num):
-    """Converts a decinal integer to binary. Raises an error if passed anything
-    other than an int, or an item that is convertable to int"""
-    try:
-        num = int(num)
-    except ValueError as e:
-        return e
-
-    return bin(num).replace("0b", "")
+    """Converts a decimal integer to a binary string representation"""
+    return f"{num:b}"
 
 
 def _lazy_primes():
     """Return a generator that will generate infinite primes
-
-    This is very, very slow.
     If an even value is passed as num, it attempts to start generating
     primes at num - 1
     """
@@ -309,16 +301,12 @@ def factors(n):
 
 
 def is_palindrome(x):
-    """Returns True if x is a palindrome, False otherwise.
+    """Returns True if x is a palindrome, False otherwise."""
 
-    No error checking, please only pass lists and strings. 'Abcba' is False because of the capital A
-    """
-    x = str(x)
-    t = list(x)
-    t.reverse()
-    t = "".join(t)
-
-    return x == t
+    if isinstance(x, (list, tuple)):
+        return x == x[::-1]
+    s = str(x)
+    return s == s[::-1]
 
 
 def reverse_num(n):
