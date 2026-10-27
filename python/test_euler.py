@@ -199,10 +199,31 @@ def test_to_binary():
     assert euler.to_binary(0) == "0"
     assert euler.to_binary(-1) == "-1"
     assert euler.to_binary(170) == "10101010"
-    with pytest.raises(ValueError):
-        euler.to_binary(1.1)
-        euler.to_binary("1.1")
-        euler.to_binary("170")
+    for invalid in (1.1, "1.1", "170"):
+        with pytest.raises(ValueError):
+            euler.to_binary(invalid)
+
+
+def test_reverse_num():
+    assert euler.reverse_num(12345) == 54321
+    assert euler.reverse_num(1200) == 21
+    assert euler.reverse_num(7) == 7
+
+
+def test_is_factorion():
+    assert euler.is_factorion(145) is True
+    assert euler.is_factorion(1) is True
+    assert euler.is_factorion(2) is True
+    assert euler.is_factorion(40585) is True
+    assert euler.is_factorion(144) is False
+
+
+def test_series_sums():
+    assert euler.sum_of_seq(10) == 55
+    assert euler.sum_of_squares(10) == 385
+    assert euler.square_of_sums(10) == 3025
+    assert isinstance(euler.square_of_sums(10), int)
+    assert euler.square_of_sums(10) == euler.sum_of_seq(10) ** 2
 
 
 def test_combine():
@@ -218,3 +239,47 @@ def test_combine():
     assert euler.combine([1, 2, 3, 4, 1, 2, 3, 4]) == [1, 4, 9, 16]
     assert euler.combine([1, 2, 4, 3, 1, 2, 4, 3]) == [1, 4, 9, 16]
     assert euler.combine([4, 4, 3, 3, 3, 2, 2, 2, 2]) == [16, 27, 16]
+
+
+def test_digital_sum():
+    assert euler.digital_sum(12345) == 15
+    assert euler.digital_sum(0) == 0
+    assert euler.digital_sum(-99) == 18
+    with pytest.raises(TypeError):
+        euler.digital_sum("12345")
+
+
+def test_complete_digital_sum():
+    assert euler.complete_digital_sum(493193) == 2
+    assert euler.complete_digital_sum(0) == 0
+    assert euler.complete_digital_sum(9) == 9
+    assert euler.complete_digital_sum(99) == 9
+    with pytest.raises(TypeError):
+        euler.complete_digital_sum(12.3)
+
+
+def test_n_pandigital():
+    assert euler.n_pandigital(123456789) is True
+    assert euler.n_pandigital("12345") is True
+    assert euler.n_pandigital([1, 3, 2]) is True
+    assert euler.n_pandigital(12345, l=4) is False
+    assert euler.n_pandigital(112345) is False
+    assert euler.n_pandigital(123450) is False
+
+
+def test_mult():
+    assert euler.mult([1, 2, 3, 4]) == 24
+    assert euler.mult([]) == 1
+    assert euler.mult(["2", "3", "4"]) == 24
+
+
+def test_fact():
+    import math
+
+    assert euler.fact(0) == 1
+    assert euler.fact(5) == 120
+    assert euler.fact(0.5) == math.gamma(1.5)
+    with pytest.raises(ValueError):
+        euler.fact(-1)
+    with pytest.raises(TypeError):
+        euler.fact("5")

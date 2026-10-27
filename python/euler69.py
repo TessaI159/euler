@@ -9,11 +9,11 @@
 from pathlib import Path
 
 from decorator import time_and_memory_decorator as tamd
-from euler import prime_sieve_gen
+from euler import prime_sieve
 
 filename = Path(__file__).stem
 
-primes = prime_sieve_gen(1500)
+primes = prime_sieve(1500)
 
 
 @tamd

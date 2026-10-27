@@ -155,16 +155,6 @@ def fact(n):
         raise TypeError("n must be an integer or a float.")
 
 
-def binom_co(n, k):
-    """Returns the binomial coefficient of (n/k)"""
-    return fact(n) / (fact(k) * fact(n - k))
-
-
-def permutations(n, k):
-    """Returns nPk"""
-    return fact(n) / fact(n - k)
-
-
 def string_sort(s):
     """Takes a string and returns a sorted string. Capital letters come before
     lowercase letters"""
@@ -312,10 +302,7 @@ def is_palindrome(x):
 
 def reverse_num(n):
     """Returns the reverse of an integer number"""
-    n = str(n)
-    n = n[::-1]
-    n = int(n)
-    return n
+    return int(str(n)[::-1])
 
 
 def sum_of_squares(n):
@@ -333,7 +320,7 @@ def square_of_sums(n):
     If you need the square of sums from x through n you can use:
     (sum_of_seq(n) - sum_of_seq(x-1))**2
     """
-    return ((n * (n + 1)) / 2) ** 2
+    return ((n * (n + 1)) // 2) ** 2
 
 
 def sum_of_seq(n):
@@ -367,31 +354,6 @@ def prime_sieve(n):
     sieve = [i for i, p in enumerate(sieve) if p]
 
     return sieve
-
-
-def prime_sieve_gen(n):
-    """Returns a generator of all primes up to limit n-1
-
-    Works by crafting a list using the prime_sieve function and
-    converting it to a generator. Probably useless, but oh well.
-    """
-    sieve = [True for x in range(n)]
-
-    sieve[0] = False
-    sieve[1] = False
-    sieve[2] = True
-
-    for i in range(4, n, 2):
-        sieve[i] = False
-    for i in range(3, n, 2):
-        if is_prime(i):
-            x = i * 2
-            while x < n:
-                sieve[x] = False
-                x += i
-
-    real_sieve = (i for i in range(len(sieve)) if sieve[i])
-    return real_sieve
 
 
 def unique(args, length=None):
@@ -442,7 +404,7 @@ _DIGIT_FACTORIALS = tuple(math.factorial(i) for i in range(10))
 
 
 def is_factorion(n):
-    """Returns the sum of the factorial of each digit in a number
+    """Returns True if the sum of the factorials of the digits of n is equal to n
 
     145 = 1! + 4! + 5! = 145
     """
