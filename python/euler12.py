@@ -17,24 +17,28 @@
 # What is the value of the first triangle number to have over five hundred divisors?
 
 
+from math import prod
 from pathlib import Path
 
 from decorator import time_and_memory_decorator as tamd
-from euler import factors, triangle_number
+from euler import prime_factorization
 
 filename = Path(__file__).stem
 
 
 @tamd
 def find_answer(n=500):
-    x = 1
-    length = len(factors(triangle_number(x)))
+    triangle = 1
+    i = 2
+    while True:
+        factor_count = prod(
+            [mult + 1 for _, mult in prime_factorization(triangle).items()]
+        )
 
-    while length < n:
-        x += 1
-        length = len(factors(triangle_number(x)))
-
-    return triangle_number(x)
+        if factor_count > n:
+            return triangle
+        triangle += i
+        i += 1
 
 
 if __name__ == "__main__":

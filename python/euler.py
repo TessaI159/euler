@@ -253,6 +253,65 @@ def infinite_primes(start=1):
             yield p
 
 
+def prime_factorization(n):
+    """Returns the prime factors of n with multiplicity"""
+    if n < 2:
+        return Counter()
+
+    counts = Counter()
+
+    while n % 2 == 0:
+        counts[2] += 1
+        n //= 2
+
+    d = 3
+    while d * d <= n:
+        while n % d == 0:
+            counts[d] += 1
+            n //= d
+        d += 2
+
+    if n > 1:
+        counts[n] += 1
+
+    return counts
+
+
+def prime_factors(n):
+    """Returns the prime factors of a number.
+
+    One caveat to look out for is that if a square, cube, etc.
+    is part of the prime factorization it will return a list with
+    2, 3, etc. of that number. For example:
+    prime_factors(36) return [2,2,3,3] because the prime factorization
+    of 36 is [2**2, 3**2]
+    The combine function is a good way to check if two numbers have a unique prime factorization.
+    combine(prime_factors(644)) returns [4,7,23] instead of [2,2,7,23]
+    combine(prime_factors(646)) returns [2,17,19]
+    Which allows them to be considered unique when passed to unique
+    Check out euler47.py to see prime_factors, unique, and combine used together.
+    This is what they were built for.
+    """
+    answers = []
+
+    if is_prime(n):
+        return [n]
+
+    while n % 2 == 0:
+        answers.append(2)
+        n /= 2
+
+    for i in range(3, int(math.sqrt(n) + 1), 2):
+        while n % i == 0:
+            answers.append(i)
+            n /= i
+
+    if n > 2:
+        answers.append(int(n))
+
+    return answers
+
+
 def proper_divisors(n):
     """Returns a set with all the proper divisors of n"""
     ans = [1]
@@ -287,7 +346,7 @@ def factors(n):
     for x in range(1, int(math.sqrt(n) + 1)):
         if n % x == 0:
             ans.append(x)
-            ans.append(int(n / x))
+            ans.append(int(n // x))
     return set(ans)
 
 
@@ -334,26 +393,17 @@ def sum_of_seq(n):
 
 def prime_sieve(n):
     """Returns a list of all primes up to limit n-1"""
-    sieve = [True for x in range(n)]
+    if n < 3:
+        return [2] if n == 3 else []
+    sieve = [True] * n
+    sieve[0] = sieve[1] = False
+    sieve[4::2] = [False] * len(range(4, n, 2))
 
-    sieve[0] = False
-    sieve[1] = False
-    sieve[2] = True
+    for i in range(3, math.isqrt(n), 2):
+        if sieve[i]:
+            sieve[i * i : n : 2 * i] = [False] * len(range(i * i, n, 2 * i))
 
-    for i in range(4, n, 2):
-        sieve[i] = False
-    for i in range(3, n, 2):
-        if not sieve[i]:
-            continue
-        if is_prime(i):
-            x = i * 2
-            while x < n:
-                sieve[x] = False
-                x += i
-
-    sieve = [i for i, p in enumerate(sieve) if p]
-
-    return sieve
+    return [i for i, is_p in enumerate(sieve) if is_p]
 
 
 def unique(args, length=None):
@@ -410,41 +460,6 @@ def is_factorion(n):
     """
 
     return sum(_DIGIT_FACTORIALS[int(c)] for c in str(n)) == n
-
-
-def prime_factors(n):
-    """Returns the prime factors of a number.
-
-    One caveat to look out for is that if a square, cube, etc.
-    is part of the prime factorization it will return a list with
-    2, 3, etc. of that number. For example:
-    prime_factors(36) return [2,2,3,3] because the prime factorization
-    of 36 is [2**2, 3**2]
-    The combine function is a good way to check if two numbers have a unique prime factorization.
-    combine(prime_factors(644)) returns [4,7,23] instead of [2,2,7,23]
-    combine(prime_factors(646)) returns [2,17,19]
-    Which allows them to be considered unique when passed to unique
-    Check out euler47.py to see prime_factors, unique, and combine used together.
-    This is what they were built for.
-    """
-    answers = []
-
-    if is_prime(n):
-        return [n]
-
-    while n % 2 == 0:
-        answers.append(2)
-        n /= 2
-
-    for i in range(3, int(math.sqrt(n) + 1), 2):
-        while n % i == 0:
-            answers.append(i)
-            n /= i
-
-    if n > 2:
-        answers.append(int(n))
-
-    return answers
 
 
 def totient_product(n):
