@@ -203,3 +203,18 @@ def test_to_binary():
         euler.to_binary(1.1)
         euler.to_binary("1.1")
         euler.to_binary("170")
+
+
+def test_combine():
+    assert euler.combine(
+        [
+            1,
+            1,
+            1,
+            2,
+            2,
+        ]
+    ) == [1, 4]
+    assert euler.combine([1, 2, 3, 4, 1, 2, 3, 4]) == [1, 4, 9, 16]
+    assert euler.combine([1, 2, 4, 3, 1, 2, 4, 3]) == [1, 4, 9, 16]
+    assert euler.combine([4, 4, 3, 3, 3, 2, 2, 2, 2]) == [16, 27, 16]

@@ -7,7 +7,7 @@
 from pathlib import Path
 
 from decorator import time_and_memory_decorator as tamd
-from euler import sum_of_fact
+from euler import is_factorion
 
 filename = Path(__file__).stem
 
@@ -16,7 +16,7 @@ filename = Path(__file__).stem
 def find_answer():
     ans = 0
     for i in range(3, 50000):
-        if sum_of_fact(i):
+        if is_factorion(i):
             ans += i
     return ans
 

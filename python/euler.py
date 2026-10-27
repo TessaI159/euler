@@ -1,6 +1,7 @@
 import inspect
 import math
 from pathlib import Path
+from collections import Counter
 
 
 class CustomError(Exception):
@@ -433,28 +434,20 @@ def combine(arr):
     For example: combine([2,2,3,3]) returns [4,9]
     combine([3,3,3,4,4,5,5,5]) returns [27,16,125]
     """
-    elem_dict = {}
 
-    for elem in arr:
-        try:
-            elem_dict[elem] += 1
-        except KeyError as _:
-            elem_dict[elem] = 1
-
-    return [key**value for key, value in elem_dict.items()]
+    return [k**v for k, v in Counter(sorted(arr)).items()]
 
 
-def sum_of_fact(n):
+_DIGIT_FACTORIALS = tuple(math.factorial(i) for i in range(10))
+
+
+def is_factorion(n):
     """Returns the sum of the factorial of each digit in a number
 
     145 = 1! + 4! + 5! = 145
     """
-    sums = 0
 
-    for c in str(n):
-        sums += fact(int(c))
-
-    return sums == n
+    return sum(_DIGIT_FACTORIALS[int(c)] for c in str(n)) == n
 
 
 def prime_factors(n):
