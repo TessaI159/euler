@@ -314,12 +314,36 @@ def prime_factors(n):
 
 def proper_divisors(n):
     """Returns a set with all the proper divisors of n"""
-    ans = [1]
-    for x in range(2, int(math.sqrt(n) + 1)):
+    if n <= 1:
+        return set()
+
+    divisors = {1}
+    step = 1 if n % 2 == 0 else 2
+    start = 2 if n % 2 == 0 else 3
+
+    for x in range(start, math.isqrt(n) + 1, step):
         if n % x == 0:
-            ans.append(x)
-            ans.append(int(n / x))
-    return set(ans)
+            divisors.add(x)
+            divisors.add(n // x)
+
+    return divisors
+
+
+def sum_of_proper_divisors(n):
+    """Returns the sum of the proper divisors of n"""
+
+    if n <= 1:
+        return 0
+
+    total = 1
+    for p, count in prime_factorization(n).items():
+        total *= (p ** (count + 1) - 1) // (p - 1)
+
+    return total - n
+
+
+def sum_of_divisors(n):
+    return sum_of_proper_divisors(n) + n
 
 
 def is_prime(n):
