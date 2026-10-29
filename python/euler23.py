@@ -12,7 +12,7 @@ from decorator import time_and_memory_decorator as tamd
 
 filename = Path(__file__).stem
 
-upper_limit = 20162
+upper_limit = 28123
 
 
 @tamd
