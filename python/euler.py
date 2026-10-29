@@ -407,7 +407,7 @@ def square_of_sums(n):
 
 
 def sum_of_seq(n):
-    """Sum of integers from 1 throug n
+    """Sum of integers from 1 through n
 
     If you need the sum of x through n you can use:
     sum_of_seq(n) - sum_of_seq(x-1)

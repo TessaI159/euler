@@ -24,7 +24,7 @@
 from pathlib import Path
 
 from decorator import time_and_memory_decorator as tamd
-from euler import is_prime
+from euler import is_prime, prime_sieve
 
 filename = Path(__file__).stem
 
@@ -41,8 +41,9 @@ def tess_quad_form(n, a, b):
 def find_answer():
     correct_a, correct_b = 0, 0
     max_primes = 0
-    for a in range(-999, 1000):
-        for b in range(-1000, 1001):
+    ps = prime_sieve(1001)
+    for a in range(-999, 1000, 2):
+        for b in ps:
             n = 0
             while True:
                 if is_prime(tess_quad_form(n, a, b)):
