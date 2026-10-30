@@ -11,24 +11,18 @@ from pathlib import Path
 
 from decorator import time_and_memory_decorator as tamd
 
+from euler import is_pentagonal, pentagon_number
+
 filename = Path(__file__).stem
 
 
-def pent(n):
-    return int((n * ((3 * n) - 1)) / 2)
-
-
-def is_pent(n):
-    return ((1 + sqrt(1 + 24 * n)) / 6) % 1 == 0
-
-
 def sum_and_diff_pent(a, b):
-    return is_pent(abs(a - b)) and is_pent(a + b)
+    return is_pentagonal(abs(a - b)) and is_pentagonal(a + b)
 
 
 @tamd
 def find_answer():
-    pentagonals = [pent(n) for n in range(1, 10**4)]
+    pentagonals = [pentagon_number(n) for n in range(1, 10**4)]
 
     d = 0
     for index_1 in range(len(pentagonals)):

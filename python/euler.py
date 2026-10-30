@@ -4,38 +4,34 @@ from pathlib import Path
 from collections import Counter
 
 
-class CustomError(Exception):
-    pass
-
-
 def is_triangular(n):
     """Returns True if n is a triangular number, False otherwise"""
-    return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
+    return ((-1 + math.isqrt(1 + (8 * n))) / 2) % 1 == 0
 
 
 def is_square(n):
     """Returns True if n is a square number, False otherwise"""
-    return math.sqrt(n) % 1 == 0
+    return math.isqrt(n) % 1 == 0
 
 
 def is_pentagonal(n):
     """Returns True if n is a pentagonal number, False otherwise"""
-    return ((1 + math.sqrt(1 + (24 * n))) / 6) % 1 == 0
+    return ((1 + math.isqrt(1 + (24 * n))) / 6) % 1 == 0
 
 
 def is_hexagonal(n):
     """Returns True if n is a hexagonal number, False otherwise"""
-    return ((1 + math.sqrt(1 + (8 * n))) / 4) % 1 == 0
+    return ((1 + math.isqrt(1 + (8 * n))) / 4) % 1 == 0
 
 
 def is_heptagonal(n):
     """Returns True if n as a heptagonal number, False otherwise"""
-    return ((3 + math.sqrt(9 + (40 * n))) / 10) % 1 == 0
+    return ((3 + math.isqrt(9 + (40 * n))) / 10) % 1 == 0
 
 
 def is_octagonal(n):
     """Returns True if n as a octagonal number, False otherwise"""
-    return ((1 + math.sqrt(3 * n + 1)) / 3) % 1 == 0
+    return ((1 + math.isqrt(3 * n + 1)) / 3) % 1 == 0
 
 
 def triangle_number(n):
