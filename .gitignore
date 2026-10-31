@@ -3,8 +3,9 @@ python/test.py
 python/venv/
 *wip*
 *.run
-fortran/sandbox*
-fortran/*.o
-fortran/*.mod
+*.aux
+*.log
+*.out
+*.toc
 
 
