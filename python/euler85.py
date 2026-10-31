@@ -21,6 +21,9 @@ def count_rectangles(w, h):
 def find_answer():
     target = 2000000
     # Smallest w with arith_sum(w)>target
+    # Generalizing for any target would essentially equate to
+    # w = (isqrt(target)+1) * 2
+    # It wouldn't be the smallest such w, but it would be close enough
     w = 2000
     h = 0
     least = 10000
