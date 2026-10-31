@@ -1,0 +1,121 @@
+\documentclass[11pt, letterpaper]{article}
+
+% --- Packages ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in, headheight=14pt]{geometry}
+\usepackage{amsmath, amssymb, amsthm, mathtools}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+
+% --- Hyperref Setup ---
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Project Euler Mathematical Notes}
+}
+
+% --- Theorem Environments ---
+\theoremstyle{plain}
+\newtheorem*{theorem}{Theorem}
+\newtheorem*{lemma}{Lemma}
+\newtheorem*{proposition}{Proposition}
+\newtheorem*{corollary}{Corollary}
+
+\theoremstyle{definition}
+\newtheorem*{definition}{Definition}
+\newtheorem*{observation}{Observation}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{complexity}{Complexity \& Bounds}
+
+% --- Page Style ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textsc{Project Euler Notes}}
+\fancyhead[R]{\nouppercase{\leftmark}}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Custom Problem Command ---
+% Usage: \eulerproblem{<Number>}{<Title>}
+% Example: \eulerproblem{1}{Multiples of 3 or 5}
+\newcommand{\eulerproblem}[2]{%
+    \clearpage
+    \phantomsection
+    \section*{Problem #1: #2}%
+    \addcontentsline{toc}{section}{Problem #1: #2}%
+    \markboth{Problem #1: #2}{Problem #1: #2}%
+    \noindent\textbf{Archive Link:} \href{https://projecteuler.net/problem=#1}{\texttt{https://projecteuler.net/problem=#1}}
+    \par\medskip\hrule\bigskip
+}
+
+% --- Common Macros ---
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\DeclareMathOperator{\lcm}{lcm}
+
+% --- Document Info ---
+\title{\textbf{Project Euler: Mathematical Notes \& Reductions}}
+\author{}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+% ==========================================
+% PROBLEM ENTRIES START HERE
+% ==========================================
+
+\eulerproblem{1}{Multiples of 3 or 5}
+
+\subsection*{Core Idea}
+Instead of iterating through all $n < N$, we use the Principle of Inclusion-Exclusion paired with closed-form arithmetic series evaluation to compute the sum in $\mathcal{O}(1)$ arithmetic operations.
+
+\begin{lemma}
+Let $S_k(N)$ denote the sum of positive multiples of $k$ strictly less than $N$. Setting $m = \lfloor \frac{N-1}{k} \rfloor$, we have:
+\[
+    S_k(N) = \sum_{i=1}^{m} ki = k \frac{m(m+1)}{2}.
+\]
+\end{lemma}
+
+\subsection*{Derivation}
+By inclusion-exclusion, the sum of all multiples of $3$ or $5$ strictly below $N = 1000$ is given by subtracting the intersection (multiples of $\lcm(3, 5) = 15$):
+\[
+    \text{Total} = S_3(1000) + S_5(1000) - S_{15}(1000).
+\]
+
+
+\eulerproblem{2}{Even Fibonacci Numbers}
+
+\subsection*{Core Idea}
+Every third Fibonacci number is even. We can derive a direct second-order linear recurrence for the subsequence of even Fibonacci numbers, eliminating the need to compute odd terms or check parity.
+
+\begin{proposition}
+Let $F_1 = 1, F_2 = 1$, and $F_n = F_{n-1} + F_{n-2}$. Define $E_k = F_{3k}$ as the $k$-th even Fibonacci number. Then $E_k$ satisfies the recurrence:
+\[
+    E_k = 4E_{k-1} + E_{k-2} \quad \text{for } k \ge 3,
+\]
+with seed values $E_1 = 2$ and $E_2 = 8$.
+\end{proposition}
+
+\begin{proof}
+Expanding the standard recurrence relations down to indices divisible by $3$:
+\begin{align*}
+    F_{3k} &= F_{3k-1} + F_{3k-2} \\
+           &= (F_{3k-2} + F_{3k-3}) + F_{3k-2} = 2F_{3k-2} + F_{3k-3} \\
+           &= 2(F_{3k-3} + F_{3k-4}) + F_{3k-3} = 3F_{3k-3} + 2F_{3k-4} \\
+           &= 3F_{3k-3} + F_{3k-4} + (F_{3k-5} + F_{3k-6}) \\
+           &= 4F_{3k-3} + F_{3k-6} = 4E_{k-1} + E_{k-2}. \qedhere
+\end{align*}
+\end{proof}
+
+\end{document}

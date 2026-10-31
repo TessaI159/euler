@@ -2,6 +2,7 @@ import inspect
 import math
 from pathlib import Path
 from collections import Counter
+from collections.abc import Callable
 
 
 def is_triangular(n):
@@ -502,6 +503,36 @@ def totient_product(n):
     if n > 1:
         result -= result // n
     return int(result)
+
+
+def lagrange_polynomial(inputs, outputs):
+    inputs = tuple(inputs)
+    outputs = tuple(outputs)
+
+    if len(inputs) != len(outputs):
+        raise ValueError("The length of inputs and outputs must be the same")
+    if len(inputs) != len(set(inputs)):
+        raise ValueError("Each input must be unique")
+    if not inputs:
+        raise ValueError("Cannot interpolate an empty set")
+
+    weighted_outputs = tuple(
+        y_j / math.prod(x_j - x_m for m, x_m in enumerate(inputs) if m != j)
+        for j, (x_j, y_j) in enumerate(zip(inputs, outputs))
+    )
+
+    def l_poly(x):
+        for x_j, y_j in zip(inputs, outputs):
+            if x == x_j:
+                return float(y_j)
+
+        master_prod = math.prod(x - x_m for x_m in inputs)
+        return float(
+            master_prod
+            * sum(wy_j / (x - x_j) for x_j, wy_j in zip(inputs, weighted_outputs))
+        )
+
+    return l_poly
 
 
 # Start of data for euler17.py
