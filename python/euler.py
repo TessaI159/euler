@@ -2,17 +2,21 @@ import inspect
 import math
 from pathlib import Path
 from collections import Counter
-from collections.abc import Callable
+import itertools
 
 
 def is_triangular(n):
     """Returns True if n is a triangular number, False otherwise"""
-    return ((-1 + math.sqrt(1 + (8 * n))) / 2) % 1 == 0
+    if n < 1:
+        return False
+    d = 1 + 8 * n
+    r = math.isqrt(d)
+    return r * r == d and r % 2 == 1
 
 
 def is_square(n):
     """Returns True if n is a square number, False otherwise"""
-    return math.sqrt(n) % 1 == 0
+    return n >= 0 and math.isqrt(n) ** 2 == n
 
 
 def is_pentagonal(n):
@@ -117,7 +121,7 @@ def read_input(input_file_string=None):
                 break
 
     if not input_file_string:
-        raise CustomError("Could not determine calling script for read_input")
+        raise ValueError("Could not determine calling script for read_input")
 
     input_file_string = f"data/{input_file_string}_input.txt"
 
@@ -136,8 +140,7 @@ def is_permutation(a, b):
 
 def mult(m):
     """Like the built-in sum, but uses multiplication instead of addition"""
-    mi = [int(arg) for arg in m]
-    return math.prod(mi)
+    return math.prod(map(int, m))
 
 
 def fact(n):
@@ -243,11 +246,8 @@ def _lazy_primes():
 
 
 def infinite_primes(start=1):
-    """Generates an infinite sequence of primes starting at the first prime >=
-    start"""
-    for p in _lazy_primes():
-        if p >= start:
-            yield p
+    """Generates an infinite sequence of primes starting at the first prime >= start."""
+    return itertools.dropwhile(lambda p: p < start, _lazy_primes())
 
 
 def prime_factorization(n):
@@ -275,38 +275,8 @@ def prime_factorization(n):
 
 
 def prime_factors(n):
-    """Returns the prime factors of a number.
-
-    One caveat to look out for is that if a square, cube, etc.
-    is part of the prime factorization it will return a list with
-    2, 3, etc. of that number. For example:
-    prime_factors(36) return [2,2,3,3] because the prime factorization
-    of 36 is [2**2, 3**2]
-    The combine function is a good way to check if two numbers have a unique prime factorization.
-    combine(prime_factors(644)) returns [4,7,23] instead of [2,2,7,23]
-    combine(prime_factors(646)) returns [2,17,19]
-    Which allows them to be considered unique when passed to unique
-    Check out euler47.py to see prime_factors, unique, and combine used together.
-    This is what they were built for.
-    """
-    answers = []
-
-    if is_prime(n):
-        return [n]
-
-    while n % 2 == 0:
-        answers.append(2)
-        n /= 2
-
-    for i in range(3, int(math.sqrt(n) + 1), 2):
-        while n % i == 0:
-            answers.append(i)
-            n /= i
-
-    if n > 2:
-        answers.append(int(n))
-
-    return answers
+    """Returns the prime factors of n with multiplicity."""
+    return list(prime_factorization(n).elements())
 
 
 def proper_divisors(n):
@@ -420,7 +390,7 @@ def prime_sieve(n):
     sieve[0] = sieve[1] = False
     sieve[4::2] = [False] * len(range(4, n, 2))
 
-    for i in range(3, math.isqrt(n), 2):
+    for i in range(3, math.isqrt(n) + 1, 2):
         if sieve[i]:
             sieve[i * i : n : 2 * i] = [False] * len(range(i * i, n, 2 * i))
 
@@ -428,12 +398,9 @@ def prime_sieve(n):
 
 
 def unique(args, length=None):
-    """Takes an arbitrary number of lists. Returns True if all items are unique, False otherwise.
+    """Takes an arbitrary number of lists. Returns True if all items are unique,
+    False otherwise."""
 
-    Don't pass in multiple lists, pass in a list of lists. Sorry.
-    unique takes the optional length parameter. If passed, all lists must be that length to be considered True
-    Otherwise it defaults to the length of the first list in args
-    """
     if not length:
         length = len(args[0])
 
@@ -483,26 +450,12 @@ def is_factorion(n):
     return sum(_DIGIT_FACTORIALS[int(c)] for c in str(n)) == n
 
 
-def totient_product(n):
+def eulers_totient(n):
     """Returns the result of Euler's totient function"""
 
-    result = n  # Initialize result as n
-
-    # Iterate through all prime factors of n
-    p = 2
-    while p * p <= n:
-        # Check if p is a prime factor.
-        if n % p == 0:
-            # If yes, then update n and result
-            while n % p == 0:
-                n = n // p
-            result = result * (1.0 - (1.0 / float(p)))
-        p = p + 1
-
-    # If n is prime
-    if n > 1:
-        result -= result // n
-    return int(result)
+    if n < 1:
+        return 0
+    return math.prod(p ** (k - 1) * (p - 1) for p, k in prime_factorization(n).items())
 
 
 def lagrange_polynomial(inputs, outputs):
